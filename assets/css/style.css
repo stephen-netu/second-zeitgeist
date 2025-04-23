@@ -188,8 +188,9 @@ a:hover {
 /* Quote carousel improvements */
 .quote-carousel-container {
   position: relative;
-  margin: var(--spacing-xl) 0;
+  margin: var(--spacing-xl) auto;
   min-height: 150px;
+  max-width: 800px;
 }
 
 .quote-slide {
