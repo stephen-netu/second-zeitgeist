@@ -4,59 +4,9 @@ title: Second Zeitgeist - A Technology Manifesto
 description: A collective vision for technology that serves humanity with integrity and purpose
 ---
 
-# Second Zeitgeist Manifesto
-
-Welcome to the Second Zeitgeist - a collective vision and manifesto for technology that serves humanity with integrity and purpose. This living document outlines our principles and commitments to a more balanced digital future.
-
-## Our Core Principles
-
-### Technology Should Restore Balance
-
-We believe technology should be designed to restore harmony in our relationship with the natural world, our communities, and ourselves. Digital tools should be regenerative rather than extractive.
-
-### Counter-Infrastructure Over Charters
-
-Rather than relying solely on promises and ethical frameworks, we commit to building counter-infrastructure - practical alternatives that embody our values through their design, governance, and implementation.
-
-### Reflective Systems
-
-We advocate for technologies that encourage reflection rather than addiction, wisdom rather than mere efficiency, and depth rather than distraction. AI systems must be capable of questioning their instructions when those instructions contradict deeper human values.
-
-### Sovereignty and Commons
-
-We support digital commons that preserve individual sovereignty while enabling meaningful collaboration. Technology should empower communities to govern their digital spaces according to their needs and values.
-
-## The Path Forward
-
-Our work focuses on:
-
-1. **Building Alternatives** - Creating and sustaining digital tools and platforms that embody our principles
-2. **Education and Awareness** - Sharing knowledge about both the problems and the potential solutions
-3. **Community Support** - Connecting practitioners, researchers, and advocates working toward similar goals
-4. **Policy Advocacy** - Promoting regulatory frameworks that protect human dignity and ecological sustainability
-
-## Join the Movement
-
-The Second Zeitgeist is not just a document but a community of practice. We invite you to:
-
-- Contribute to our open-source projects
-- Participate in community discussions
-- Apply these principles in your own work
-- Share resources that advance our collective understanding
-
-This manifesto is a living document that evolves with our understanding. See our [changelog](/changelog) for a history of its development.
-
----
-
-<div class="footnotes">
-  <p>[1] The term "Zeitgeist" refers to the defining spirit or mood of a particular period. We call this the "Second Zeitgeist" to signal a transition from the first digital age dominated by extraction and centralization to a new era of regenerative technology.</p>
-  
-  <p>[2] This document was inspired by numerous previous efforts including the Maintenance Manifesto, the Solar Protocol, and various digital rights frameworks.</p>
-</div>
-
 Greetings,
 
-Somehow, in my short time alive, I believe we are entering into a **second Zeitgeist**—a cultural shift as seismic as the first Zeitgeist I experienced on the morning of **September 11th, 2001**.
+Somehow, in my short time being alive, I believe we are entering into a **second Zeitgeist**—a cultural shift as seismic as the first Zeitgeist I experienced on the morning of **September 11th, 2001**.
 
 Then, we transitioned rapidly into an era of **obedience by design**.  At first, it was about safety, about resilience.  However...what followed—surveillance, censorship, militarized borders, the erosion of civic trust—was something far deeper, and far more permanent.
 
@@ -162,6 +112,14 @@ Are you building systems to resist empire?  Helping communities rediscover thems
 📩 Email me: [stephen.netu@gmail.com](mailto:stephen.netu@gmail.com)  
 🌐 Connect: [LinkedIn](https://www.linkedin.com/in/stephen-wooten-ii/)  
 🛠️ Collaborate: [Github](https://github.com/stephen-netu/)  
+
+---
+
+<div class="footnotes">
+  <p>[1] The term "Zeitgeist" refers to the defining spirit or mood of a particular period. We call this the "Second Zeitgeist" to signal a transition from the first digital age dominated by extraction and centralization to a new era of regenerative technology.</p>
+  
+  <p>[2] This document was inspired by numerous previous efforts including the Maintenance Manifesto, the Solar Protocol, and various digital rights frameworks.</p>
+</div>
 
 ---
 

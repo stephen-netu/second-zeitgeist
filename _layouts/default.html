@@ -177,14 +177,14 @@
         <!-- Only include changelog on the changelog page -->
       {% endunless %}
       
-      <div class="colophon">
+      <div class="colophon" style="text-align: center;">
         <h2>Colophon</h2>
         <p>This document was created with Jekyll and designed for both web and print distribution. 
           The typefaces used are system fonts for maximum compatibility.</p>
         <p>Last updated: {{ site.time | date: '%B %d, %Y' }}</p>
         
         <div class="qr-code">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ site.url }}{{ site.baseurl }}/" alt="QR Code to this site">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ site.url }}{{ site.baseurl }}/&color=000000&bgcolor=ffffff" alt="QR Code to this site" class="qr-code-img">
           <p>Scan to visit the digital version</p>
         </div>
       </div>
