@@ -1,0 +1,72 @@
+<div class="pdf-export-container no-print">
+  <button id="export-pdf" class="export-button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    Export as PDF (Zine Mode)
+  </button>
+</div>
+
+<style>
+  .pdf-export-container {
+    margin: 2rem 0;
+    text-align: center;
+  }
+  
+  .export-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .export-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .export-button svg {
+    stroke: white;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add PDF export functionality
+    const exportButton = document.getElementById('export-pdf');
+    
+    if (exportButton) {
+      exportButton.addEventListener('click', function() {
+        // Add a class to the body for print-specific styles
+        document.body.classList.add('pdf-export-mode');
+        
+        // Show a simple "preparing" message
+        const originalText = exportButton.innerHTML;
+        exportButton.innerHTML = 'Preparing PDF...';
+        exportButton.disabled = true;
+        
+        // Small delay to ensure UI updates before print dialog
+        setTimeout(function() {
+          window.print();
+          
+          // Reset button after printing
+          setTimeout(function() {
+            document.body.classList.remove('pdf-export-mode');
+            exportButton.innerHTML = originalText;
+            exportButton.disabled = false;
+          }, 1000);
+        }, 500);
+      });
+    }
+  });
+</script> 

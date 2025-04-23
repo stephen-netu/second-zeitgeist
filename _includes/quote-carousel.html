@@ -1,0 +1,33 @@
+<!-- Simple Quote Carousel -->
+<div class="quote-carousel-container">
+  <div class="quote-slide">
+    <blockquote>"Technology should exist to restore balance."</blockquote>
+    <cite>— Zeitgeist Manifesto</cite>
+  </div>
+  <div class="quote-slide">
+    <blockquote>"We don't need more charters. We need counter-infrastructure."</blockquote>
+    <cite>— Community Contributor</cite>
+  </div>
+  <div class="quote-slide">
+    <blockquote>"AI must learn to say: 'This idea contradicts your goals. Shall we pause?'"</blockquote>
+    <cite>— Tech Ethics Statement</cite>
+  </div>
+  <div class="carousel-indicators">
+    <!-- Indicators will be added by JavaScript -->
+  </div>
+</div>
+
+<!-- Print-specific styles that won't be overridden by the dark mode -->
+<style>
+  @media print {
+    .quote-slide {
+      margin-bottom: 2rem;
+      page-break-inside: avoid;
+      display: block !important;
+    }
+    
+    .carousel-indicators {
+      display: none !important;
+    }
+  }
+</style> 

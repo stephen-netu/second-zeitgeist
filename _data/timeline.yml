@@ -1,0 +1,59 @@
+- date: "1989"
+  end_date: "1989"
+  title: "Operation Just Cause (Panama)"
+  description: "The U.S. invaded Panama to depose Manuel Noriega. Marked the beginning of Netu's birth-era conflict list."
+  
+- date: "1990"
+  end_date: "1991"
+  title: "Gulf War"
+  description: "Operation Desert Storm. U.S.-led coalition liberated Kuwait from Iraq. Signaled U.S. military dominance post-Cold War."
+
+- date: "1992"
+  end_date: "1995"
+  title: "Operation Restore Hope (Somalia)"
+  description: "U.S. humanitarian mission turned into combat. Notoriously escalated with the 'Black Hawk Down' incident."
+
+- date: "1994"
+  end_date: "1994"
+  title: "Operation Uphold Democracy (Haiti)"
+  description: "U.S. intervened to restore democratically elected President Aristide following a coup."
+
+- date: "1999"
+  end_date: "1999"
+  title: "Kosovo Bombings via NATO"
+  description: "U.S. participated in NATO airstrikes against Yugoslavia over Kosovo. Highly controversial; Congress was split."
+
+- date: "2001"
+  end_date: "2021"
+  title: "Afghanistan War"
+  description: "Launched post-9/11 under AUMF. Longest U.S. war. Personal toll: Netu's stepbrother returned broken."
+
+- date: "2003"
+  end_date: "2011"
+  title: "Iraq War"
+  description: "Invasion justified by WMD claims. No formal declaration. Left a power vacuum, seeded extremism."
+
+- date: "2011"
+  end_date: "2011"
+  title: "Operation Odyssey Dawn (Libya)"
+  description: "U.S. joined NATO airstrikes to enforce a no-fly zone during Libyan Civil War. Bypassed Congress."
+
+- date: "2014"
+  end_date: "Present"
+  title: "Syria Airstrikes (Ongoing)"
+  description: "Airstrikes against ISIS and others, claimed under post-9/11 AUMF. Yet ISIS did not exist in 2001."
+
+- date: "2015"
+  end_date: "Present"
+  title: "Support for Saudi-led War in Yemen"
+  description: "U.S. provided weapons, intelligence, and refueling to coalition. Caused massive humanitarian crisis."
+
+- date: "2010"
+  end_date: "Present"
+  title: "AFRICOM Drone Strikes & Raids (Ongoing)"
+  description: "Covert drone operations across Africa. Rarely discussed in public. Bypassed most oversight."
+
+- date: "2022"
+  end_date: "Present"
+  title: "Support for Ukraine (Ongoing)"
+  description: "Massive U.S. aid to Ukraine following Russian invasion. Billions in arms, logistics, and intelligence." 

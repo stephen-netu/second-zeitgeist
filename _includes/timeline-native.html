@@ -1,0 +1,152 @@
+<!-- Native Jekyll Timeline -->
+<section id="timeline" class="timeline-section">
+  <h2>Our Journey</h2>
+  <div class="timeline-container native-timeline">
+    <div class="timeline-line"></div>
+    {% assign events = site.data.timeline | sort: 'date' %}
+    {% for event in events %}
+      <div class="timeline-event">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3 class="event-title">{{ event.title }}</h3>
+          <div class="event-period">
+            <span class="event-date">{{ event.date }}</span>
+            {% if event.end_date and event.end_date != event.date %}
+            <span class="event-separator">—</span>
+            <span class="event-end-date">{{ event.end_date }}</span>
+            {% endif %}
+          </div>
+          <p class="event-description">{{ event.description }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <p class="timeline-note">Timeline data is maintained in a <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pubhtml?gid=381460458&single=true" target="_blank">Google Sheet</a> that can be collaboratively edited.</p>
+</section>
+
+<style>
+  .timeline-section {
+    margin: 3rem 0;
+  }
+  
+  .timeline-container {
+    margin: 2rem 0;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 2rem 1rem;
+  }
+  
+  .native-timeline {
+    position: relative;
+    padding: 30px 0;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background-color: #e1e4e8;
+    transform: translateX(-50%);
+  }
+  
+  .timeline-event {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: calc(50% + 30px);
+    clear: both;
+  }
+  
+  .timeline-event:nth-child(even) {
+    padding-left: 0;
+    padding-right: calc(50% + 30px);
+  }
+  
+  .timeline-dot {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background-color: #0366d6;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  
+  .timeline-content {
+    background-color: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 15px;
+    position: relative;
+  }
+  
+  .timeline-content:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 100%;
+    border: 10px solid transparent;
+    border-right-color: #f6f8fa;
+  }
+  
+  .timeline-event:nth-child(even) .timeline-content:after {
+    right: auto;
+    left: 100%;
+    border-right-color: transparent;
+    border-left-color: #f6f8fa;
+  }
+  
+  .event-title {
+    margin-top: 0;
+    font-size: 1.1rem;
+    color: #24292e;
+  }
+  
+  .event-period {
+    font-size: 0.9rem;
+    color: #586069;
+    margin-bottom: 10px;
+  }
+  
+  .event-description {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+  
+  .timeline-note {
+    font-size: 0.9rem;
+    color: #586069;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .timeline-line {
+      left: 20px;
+    }
+    
+    .timeline-event, 
+    .timeline-event:nth-child(even) {
+      padding-left: 50px;
+      padding-right: 0;
+    }
+    
+    .timeline-dot {
+      left: 20px;
+    }
+    
+    .timeline-content:after,
+    .timeline-event:nth-child(even) .timeline-content:after {
+      right: 100%;
+      left: auto;
+      border-right-color: #f6f8fa;
+      border-left-color: transparent;
+    }
+  }
+</style> 

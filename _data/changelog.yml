@@ -1,0 +1,84 @@
+- version: "v1.0"
+  date: "2025-04-23"
+  title: "First Official Release"
+  description: "Initial manifesto release with complete timeline and project integration."
+  notes:
+    - Initial manifesto release
+    - Timeline visualization added
+    - Projects section linked
+
+- version: "v0.9"
+  date: "2025-03-10"
+  title: "Beta Preview"
+  description: "Public beta preview with core functionality implemented."
+  notes:
+    - Beta preview launched
+    - Quote carousel implemented
+    - PDF export capability added
+
+- version: "v0.8"
+  date: "2025-02-15"
+  title: "Public Review Draft"
+  description: "Draft circulated for public review and initial feedback."
+  notes:
+    - Draft manifesto circulated for review
+    - Basic site structure established
+    - Community feedback incorporated
+
+- version: "v0.5"
+  date: "2025-01-20"
+  title: "Planning Phase Complete"
+  description: "Project planning completed and core values established."
+  notes:
+    - Project planning initiated
+    - Core values defined
+    - Research phase completed
+
+- version: "v0.1"
+  date: "2024-12-01"
+  title: "Concept Development"
+  description: "Initial concept development and brainstorming."
+  notes:
+    - Concept development started
+    - Initial brainstorming sessions
+    - Vision document drafted
+
+- date: "2023-11-15"
+  title: "Initial Release"
+  description: "First version of our letter of values, establishing our core principles of Transparency, Equity, Innovation, and Responsibility."
+  notes:
+    - First public statement of values
+    - Four core principles defined
+    - Initial community feedback
+
+- date: "2023-12-10"
+  title: "Refined Equity Definition"
+  description: "Updated our definition of equity to better reflect our commitment to addressing systemic inequalities."
+  notes:
+    - Refined equity language
+    - Added concrete examples
+    - Incorporated academic research
+
+- date: "2024-01-05"
+  title: "Added Community Focus"
+  description: "Expanded our values to emphasize community engagement and participatory decision-making."
+  notes:
+    - New community section
+    - Participatory framework added
+    - Governance model outlined
+
+- date: "2024-02-20"
+  title: "Environmental Commitment"
+  description: "Strengthened our Responsibility section with specific environmental sustainability commitments."
+  notes:
+    - Carbon neutrality pledge
+    - Ecological design principles
+    - Environmental justice framework
+
+- date: "2024-04-01"
+  title: "Accessibility Integration"
+  description: "Added explicit language about digital accessibility as a key component of our Equity value."
+  notes:
+    - WCAG 2.2 compliance commitment
+    - Universal design principles
+    - Assistive technology support 
