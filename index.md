@@ -44,7 +44,7 @@ The Second Zeitgeist is not just a document but a community of practice. We invi
 - Apply these principles in your own work
 - Share resources that advance our collective understanding
 
-This manifesto is a living document that evolves with our understanding. See our [changelog](#changelog) for a history of its development.
+This manifesto is a living document that evolves with our understanding. See our [changelog](/changelog) for a history of its development.
 
 ---
 
@@ -165,4 +165,4 @@ Are you building systems to resist empire?  Helping communities rediscover thems
 
 ---
 
-*This letter is a living document. See our [changelog](#changelog) for a history of how our understanding has evolved.* 
+*This letter is a living document. See our [changelog](/changelog) for a history of how our understanding has evolved.* 

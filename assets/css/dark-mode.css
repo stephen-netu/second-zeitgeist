@@ -111,6 +111,28 @@ body.dark-mode {
   color: var(--dark-text-secondary);
 }
 
+/* Dark mode for changelog section */
+.dark-mode .changelog-section {
+  background-color: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+}
+
+.dark-mode .changelog-item:before {
+  background-color: var(--dark-accent);
+}
+
+.dark-mode .changelog-item:not(:last-child):after {
+  background-color: var(--dark-border);
+}
+
+.dark-mode .version {
+  color: var(--dark-text-primary);
+}
+
+.dark-mode .date {
+  color: var(--dark-text-secondary);
+}
+
 .dark-mode .qr-code {
   background-color: var(--dark-surface);
   padding: var(--spacing-md);
