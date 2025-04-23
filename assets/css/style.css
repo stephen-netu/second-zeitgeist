@@ -1,5 +1,3 @@
-@import "{{ site.theme }}";
-
 /* CSS Variables for consistency */
 :root {
   --light-bg: #fff;
@@ -345,6 +343,26 @@ body.dark-mode hr {
   z-index: 1001;
 }
 
+/* Override theme layout */
+header, footer, section {
+  float: none !important;
+  position: static !important;
+  width: 100% !important;
+}
+
+header.site-header {
+  position: fixed !important;
+}
+
+footer.site-footer {
+  position: fixed !important;
+}
+
+.container-lg, .container {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
 /* Responsive layout fixes */
 @media screen and (max-width: 768px) {
   :root {
@@ -414,15 +432,4 @@ body.dark-mode hr {
   p, blockquote, ul, ol, dl, table {
     page-break-inside: avoid;
   }
-}
-
-/* Important! Override remote theme styles */
-.container-lg {
-  max-width: 100% !important;
-}
-
-header, footer, section {
-  float: none !important;
-  position: relative;
-  width: 100% !important;
 } 

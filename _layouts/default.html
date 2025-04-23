@@ -8,7 +8,63 @@
   
   <!-- Directly include custom styles -->
   <style>
-    /* Emergency Styles for Dark Mode */
+    /* Emergency Styles for positioning and layout */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      border-bottom: 1px solid #eaecef;
+      background-color: #fff;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+      height: 120px;
+    }
+
+    .main-content {
+      padding: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 120px; /* Same as header height */
+      margin-bottom: 60px; /* Same as footer height */
+      padding-bottom: 48px; /* Extra padding at bottom */
+    }
+
+    .site-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      border-top: 1px solid #eaecef;
+      font-size: 0.9em;
+      background-color: #fff;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+      height: 60px;
+    }
+
+    /* Dark mode adjustments */
     .theme-toggle {
       position: absolute;
       top: 20px;
@@ -43,16 +99,42 @@
 
     .dark-mode .site-header {
       border-bottom-color: #333333;
+      background-color: #121212;
     }
 
     .dark-mode .site-footer {
       border-top-color: #333333;
       color: #aaaaaa;
+      background-color: #121212;
+    }
+    
+    /* Override any theme-specific styles */
+    header, footer, section {
+      float: none !important;
+      position: static !important;
+      width: 100% !important;
+    }
+    
+    header.site-header {
+      position: fixed !important;
+    }
+    
+    footer.site-footer {
+      position: fixed !important;
+    }
+    
+    .container-lg, .container {
+      max-width: 100% !important;
+      width: 100% !important;
     }
   </style>
   
   <!-- Jekyll-processed stylesheets -->
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  
+  <!-- Direct CSS file that overrides everything -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  
   {% seo %}
 </head>
 <body>
