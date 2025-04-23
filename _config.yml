@@ -1,6 +1,6 @@
 title: Second Zeitgeist Manifesto
 description: A collective vision and manifesto for technology that serves humanity with integrity and purpose
-theme: jekyll-theme-minimal
+# theme: jekyll-theme-minimal # Comment out since we're using remote_theme
 url: ""
 baseurl: "/second-zeitgeist"
 
@@ -9,7 +9,7 @@ markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-theme-minimal
+  - jekyll-remote-theme
 
 remote_theme: pages-themes/minimal@v0.2.0
 
