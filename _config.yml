@@ -30,5 +30,5 @@ plugins:
 
 jekyll_get_json:
   - data: timeline
-    json: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pubhtml"
+    json: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pubhtml?gid=1970720494&single=true"
     cache: false
