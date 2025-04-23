@@ -113,8 +113,6 @@ Are you building systems to resist empire?  Helping communities rediscover thems
 🌐 Connect: [LinkedIn](https://www.linkedin.com/in/stephen-wooten-ii/)  
 🛠️ Collaborate: [Github](https://github.com/stephen-netu/)  
 
----
-
 <div class="footnotes">
   <p>[1] The term "Zeitgeist" refers to the defining spirit or mood of a particular period. We call this the "Second Zeitgeist" to signal a transition from the first digital age dominated by extraction and centralization to a new era of regenerative technology.</p>
   
