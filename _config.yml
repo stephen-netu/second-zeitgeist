@@ -23,3 +23,12 @@ exclude:
   - README.md
   - second-zeitgeist/vendor
   - second-zeitgeist/_site 
+
+
+plugins:
+  - jekyll-get-json
+
+jekyll_get_json:
+  - data: timeline
+    json: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pub?gid=381460458&single=true&output=csv"
+    cache: false
