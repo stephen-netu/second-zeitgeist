@@ -1,0 +1,11 @@
+<div id="timeline-wrapper">
+  <!-- Try TimelineJS first -->
+  <div id="timelinejs-container">
+    {% include timeline.html %}
+  </div>
+  
+  <!-- Fallback to native timeline if TimelineJS fails -->
+  <div id="native-timeline-container" style="display: none;">
+    {% include timeline-native.html %}
+  </div>
+</div> 

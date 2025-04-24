@@ -39,6 +39,8 @@ The war on attention.
 The war on memory.  
 **The war of and by AI.**
 
+{% include timeline-wrapper.html %}
+
 ---
 
 We are building ever-more-powerful AI systems atop a **broken and corrupted substrate**:  

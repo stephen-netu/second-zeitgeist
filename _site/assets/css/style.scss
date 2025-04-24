@@ -15,41 +15,56 @@
   --spacing-md: 24px;
   --spacing-lg: 32px;
   --spacing-xl: 48px;
+  
+  /* Dark mode variables */
+  --dark-bg: #121212;
+  --dark-surface: #1e1e1e;
+  --dark-border: #333333;
+  --dark-text-primary: #e0e0e0;
+  --dark-text-secondary: #aaaaaa;
+  --dark-accent: #64b5f6;
+  --dark-accent-hover: #90caf9;
+  
+  /* Layout variables */
+  --header-height: 120px;
+  --footer-height: 60px;
 }
 
 /* Base styles with improved spacing */
-body {
+html, body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   line-height: 1.8;
   color: var(--light-text-primary);
   background-color: var(--light-bg);
   padding: 0;
   margin: 0;
-  position: relative;
-  transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
+  height: 100%;
 }
 
+/* Container layout */
 .container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-md);
-  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   position: relative;
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
 }
 
+/* Fixed Header styles */
 .site-header {
-  padding: var(--spacing-md) 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
   border-bottom: 1px solid var(--light-border);
-  margin-bottom: var(--spacing-lg);
-  position: relative;
-  clear: both;
+  background-color: var(--light-bg);
   width: 100%;
-  z-index: 10;
-  background-color: inherit;
+  box-sizing: border-box;
+  z-index: 1000;
+  height: var(--header-height);
 }
 
 .site-title {
@@ -62,7 +77,6 @@ body {
 
 .site-nav {
   margin-top: var(--spacing-sm);
-  clear: both;
 }
 
 .nav-link {
@@ -77,13 +91,27 @@ body {
   text-decoration: none;
 }
 
+/* Main content area */
 .main-content {
-  padding: var(--spacing-md) 0;
-  clear: both;
-  flex: 1 0 auto;
+  padding: var(--spacing-md);
   width: 100%;
-  position: relative;
-  z-index: 1;
+  box-sizing: border-box;
+  margin-top: var(--header-height); /* Push content below fixed header */
+  margin-bottom: var(--footer-height); /* Space for footer */
+  padding-bottom: var(--spacing-xl); /* Extra padding at bottom */
+}
+
+/* Center content within main area */
+.main-content > * {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Improved article spacing */
+.page-content {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -92,7 +120,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.3;
   color: var(--light-text-primary);
-  clear: both;
 }
 
 h1 {
@@ -139,37 +166,32 @@ a:hover {
   text-decoration: underline;
 }
 
-.page-content {
-  margin-top: var(--spacing-xl);
-  margin-bottom: var(--spacing-lg);
-  clear: both;
-}
-
 .timeline-section {
   margin: var(--spacing-xl) 0;
-  clear: both;
 }
 
+/* Fixed Footer styles */
 .site-footer {
-  padding: var(--spacing-md) 0;
-  margin-top: var(--spacing-xl);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-md);
   border-top: 1px solid var(--light-border);
   font-size: 0.9em;
   color: var(--light-text-secondary);
-  clear: both;
+  background-color: var(--light-bg);
   width: 100%;
-  position: relative;
-  z-index: 10;
-  background-color: inherit;
-  flex-shrink: 0;
+  box-sizing: border-box;
+  z-index: 1000;
+  height: var(--footer-height);
 }
 
+/* Quote carousel improvements */
 .quote-carousel-container {
   position: relative;
   margin: var(--spacing-xl) 0;
-  clear: both;
   min-height: 150px;
-  overflow: visible;
 }
 
 .quote-slide {
@@ -182,7 +204,6 @@ a:hover {
   padding: var(--spacing-lg) var(--spacing-md);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  clear: both;
   display: none;
   transition: opacity 0.3s ease;
 }
@@ -236,7 +257,6 @@ a:hover {
   border-top: 1px solid var(--light-border);
   font-size: 0.9em;
   color: var(--light-text-secondary);
-  clear: both;
 }
 
 .qr-code {
@@ -247,19 +267,19 @@ a:hover {
   margin-top: var(--spacing-md);
 }
 
+/* Fix for manifesto title and content */
 .page-content h1:first-child {
   margin-top: 0;
   padding-top: 0;
   margin-bottom: var(--spacing-md);
-  clear: both;
 }
 
 .page-content p:first-of-type {
   margin-top: var(--spacing-md);
   margin-bottom: var(--spacing-lg);
-  clear: both;
 }
 
+/* Footnotes spacing */
 .footnotes {
   margin-top: var(--spacing-xl);
   padding-top: var(--spacing-md);
@@ -267,22 +287,81 @@ a:hover {
   font-size: 0.9em;
 }
 
+/* Horizontal rule spacing */
 hr {
   margin: var(--spacing-xl) 0;
   border: 0;
   height: 1px;
   background-color: var(--light-border);
-  clear: both;
 }
 
-body.dark-mode .site-header,
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: var(--dark-bg);
+  color: var(--dark-text-primary);
+}
+
+body.dark-mode .site-header {
+  background-color: var(--dark-bg);
+  border-bottom-color: var(--dark-border);
+}
+
 body.dark-mode .site-footer {
-  background-color: #121212;
+  background-color: var(--dark-bg);
+  border-top-color: var(--dark-border);
+  color: var(--dark-text-secondary);
 }
 
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--dark-text-primary);
+}
+
+body.dark-mode a {
+  color: var(--dark-accent);
+}
+
+body.dark-mode a:hover {
+  color: var(--dark-accent-hover);
+}
+
+body.dark-mode .quote-slide {
+  background-color: var(--dark-surface);
+}
+
+body.dark-mode hr {
+  background-color: var(--dark-border);
+}
+
+/* Theme toggle button positioning */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+}
+
+/* Responsive layout fixes */
 @media screen and (max-width: 768px) {
-  .container {
-    padding: 0 var(--spacing-sm);
+  :root {
+    --header-height: 130px;
+    --footer-height: 60px;
+  }
+
+  .site-header {
+    padding: var(--spacing-xs);
+  }
+  
+  .site-footer {
+    padding: var(--spacing-xs);
+  }
+  
+  .main-content {
+    padding: var(--spacing-sm);
   }
   
   h1 {
@@ -295,6 +374,7 @@ body.dark-mode .site-footer {
   }
 }
 
+/* Print styles */
 @media print {
   body {
     font-size: 12pt;
@@ -302,18 +382,23 @@ body.dark-mode .site-footer {
     color: #000;
   }
   
+  .site-header, .site-footer {
+    position: static;
+    height: auto;
+  }
+  
+  .main-content {
+    margin: 0;
+    padding: 0;
+  }
+  
   a {
     color: #000;
     text-decoration: none;
   }
   
-  .site-nav, .site-footer, .theme-toggle {
+  .site-nav, .theme-toggle {
     display: none;
-  }
-  
-  .container {
-    max-width: 100%;
-    padding: 0;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -329,4 +414,15 @@ body.dark-mode .site-footer {
   p, blockquote, ul, ol, dl, table {
     page-break-inside: avoid;
   }
+}
+
+/* Important! Override remote theme styles */
+.container-lg {
+  max-width: 100% !important;
+}
+
+header, footer, section {
+  float: none !important;
+  position: relative;
+  width: 100% !important;
 } 

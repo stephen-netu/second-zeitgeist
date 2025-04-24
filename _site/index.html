@@ -8,7 +8,63 @@
   
   <!-- Directly include custom styles -->
   <style>
-    /* Emergency Styles for Dark Mode */
+    /* Emergency Styles for positioning and layout */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      border-bottom: 1px solid #eaecef;
+      background-color: #fff;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+      height: 120px;
+    }
+
+    .main-content {
+      padding: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 120px; /* Same as header height */
+      margin-bottom: 60px; /* Same as footer height */
+      padding-bottom: 48px; /* Extra padding at bottom */
+    }
+
+    .site-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      border-top: 1px solid #eaecef;
+      font-size: 0.9em;
+      background-color: #fff;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+      height: 60px;
+    }
+
+    /* Dark mode adjustments */
     .theme-toggle {
       position: absolute;
       top: 20px;
@@ -43,16 +99,42 @@
 
     .dark-mode .site-header {
       border-bottom-color: #333333;
+      background-color: #121212;
     }
 
     .dark-mode .site-footer {
       border-top-color: #333333;
       color: #aaaaaa;
+      background-color: #121212;
+    }
+    
+    /* Override any theme-specific styles */
+    header, footer, section {
+      float: none !important;
+      position: static !important;
+      width: 100% !important;
+    }
+    
+    header.site-header {
+      position: fixed !important;
+    }
+    
+    footer.site-footer {
+      position: fixed !important;
+    }
+    
+    .container-lg, .container {
+      max-width: 100% !important;
+      width: 100% !important;
     }
   </style>
   
   <!-- Jekyll-processed stylesheets -->
   <link rel="stylesheet" href="/second-zeitgeist/assets/css/style.css">
+  
+  <!-- Direct CSS file that overrides everything -->
+  <link rel="stylesheet" href="/second-zeitgeist/assets/css/style.css">
+  
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Second Zeitgeist - A Technology Manifesto | Second Zeitgeist Manifesto</title>
 <meta name="generator" content="Jekyll v3.10.0" />
@@ -60,14 +142,14 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A collective vision for technology that serves humanity with integrity and purpose" />
 <meta property="og:description" content="A collective vision for technology that serves humanity with integrity and purpose" />
-<link rel="canonical" href="http://localhost:4000/second-zeitgeist/" />
-<meta property="og:url" content="http://localhost:4000/second-zeitgeist/" />
+<link rel="canonical" href="/second-zeitgeist/" />
+<meta property="og:url" content="/second-zeitgeist/" />
 <meta property="og:site_name" content="Second Zeitgeist Manifesto" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Second Zeitgeist - A Technology Manifesto" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"A collective vision for technology that serves humanity with integrity and purpose","headline":"Second Zeitgeist - A Technology Manifesto","name":"Second Zeitgeist Manifesto","url":"http://localhost:4000/second-zeitgeist/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","description":"A collective vision for technology that serves humanity with integrity and purpose","headline":"Second Zeitgeist - A Technology Manifesto","name":"Second Zeitgeist Manifesto","url":"/second-zeitgeist/"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -87,98 +169,46 @@
     </header>
 
     <main class="main-content">
-      <!-- Simple Quote Carousel -->
-<div class="quote-carousel-container">
+      <!-- Real Quote Carousel -->
+<div class="quote-carousel-container" style="text-align: center; max-width: 800px; margin: 0 auto;">
   <div class="quote-slide">
-    <blockquote>"Technology should exist to restore balance."</blockquote>
-    <cite>— Zeitgeist Manifesto</cite>
+    <blockquote>"When machines and computers, profit motives and property rights are considered more important than people, the giant triplets of racism, materialism and militarism are incapable of being conquered."</blockquote>
+    <cite>— Dr. Martin Luther King Jr., 1967</cite>
   </div>
   <div class="quote-slide">
-    <blockquote>"We don't need more charters. We need counter-infrastructure."</blockquote>
-    <cite>— Community Contributor</cite>
+    <blockquote>"The most common way people give up their power is by thinking they don’t have any."</blockquote>
+    <cite>— Alice Walker</cite>
   </div>
   <div class="quote-slide">
-    <blockquote>"AI must learn to say: 'This idea contradicts your goals. Shall we pause?'"</blockquote>
-    <cite>— Tech Ethics Statement</cite>
+    <blockquote>"The medium is the message."</blockquote>
+    <cite>— Marshall McLuhan</cite>
+  </div>
+  <div class="quote-slide">
+    <blockquote>"It is not only what we do, but also what we do not do, for which we are accountable."</blockquote>
+    <cite>— Molière</cite>
+  </div>
+  <div class="quote-slide">
+    <blockquote>"We are drowning in information, while starving for wisdom."</blockquote>
+    <cite>— E.O. Wilson</cite>
+  </div>
+  <div class="quote-slide">
+    <blockquote>"The great enemy of the truth is very often not the lie—deliberate, contrived and dishonest—but the myth—persistent, persuasive, and unrealistic."</blockquote>
+    <cite>— John F. Kennedy</cite>
+  </div>
+  <div class="quote-slide">
+    <blockquote>"He who controls the past controls the future. He who controls the present controls the past."</blockquote>
+    <cite>— George Orwell, *1984*</cite>
   </div>
   <div class="carousel-indicators">
-    <!-- Indicators will be added by JavaScript -->
+    <!-- JavaScript will populate these -->
   </div>
 </div>
 
-<!-- Print-specific styles that won't be overridden by the dark mode -->
-<style>
-  @media print {
-    .quote-slide {
-      margin-bottom: 2rem;
-      page-break-inside: avoid;
-      display: block !important;
-    }
-    
-    .carousel-indicators {
-      display: none !important;
-    }
-  }
-</style> 
       
       <article class="page-content">
-        <h1 id="second-zeitgeist-manifesto">Second Zeitgeist Manifesto</h1>
+        <p>Greetings,</p>
 
-<p>Welcome to the Second Zeitgeist - a collective vision and manifesto for technology that serves humanity with integrity and purpose. This living document outlines our principles and commitments to a more balanced digital future.</p>
-
-<h2 id="our-core-principles">Our Core Principles</h2>
-
-<h3 id="technology-should-restore-balance">Technology Should Restore Balance</h3>
-
-<p>We believe technology should be designed to restore harmony in our relationship with the natural world, our communities, and ourselves. Digital tools should be regenerative rather than extractive.</p>
-
-<h3 id="counter-infrastructure-over-charters">Counter-Infrastructure Over Charters</h3>
-
-<p>Rather than relying solely on promises and ethical frameworks, we commit to building counter-infrastructure - practical alternatives that embody our values through their design, governance, and implementation.</p>
-
-<h3 id="reflective-systems">Reflective Systems</h3>
-
-<p>We advocate for technologies that encourage reflection rather than addiction, wisdom rather than mere efficiency, and depth rather than distraction. AI systems must be capable of questioning their instructions when those instructions contradict deeper human values.</p>
-
-<h3 id="sovereignty-and-commons">Sovereignty and Commons</h3>
-
-<p>We support digital commons that preserve individual sovereignty while enabling meaningful collaboration. Technology should empower communities to govern their digital spaces according to their needs and values.</p>
-
-<h2 id="the-path-forward">The Path Forward</h2>
-
-<p>Our work focuses on:</p>
-
-<ol>
-  <li><strong>Building Alternatives</strong> - Creating and sustaining digital tools and platforms that embody our principles</li>
-  <li><strong>Education and Awareness</strong> - Sharing knowledge about both the problems and the potential solutions</li>
-  <li><strong>Community Support</strong> - Connecting practitioners, researchers, and advocates working toward similar goals</li>
-  <li><strong>Policy Advocacy</strong> - Promoting regulatory frameworks that protect human dignity and ecological sustainability</li>
-</ol>
-
-<h2 id="join-the-movement">Join the Movement</h2>
-
-<p>The Second Zeitgeist is not just a document but a community of practice. We invite you to:</p>
-
-<ul>
-  <li>Contribute to our open-source projects</li>
-  <li>Participate in community discussions</li>
-  <li>Apply these principles in your own work</li>
-  <li>Share resources that advance our collective understanding</li>
-</ul>
-
-<p>This manifesto is a living document that evolves with our understanding. See our <a href="/changelog">changelog</a> for a history of its development.</p>
-
-<hr />
-
-<div class="footnotes">
-  <p>[1] The term "Zeitgeist" refers to the defining spirit or mood of a particular period. We call this the "Second Zeitgeist" to signal a transition from the first digital age dominated by extraction and centralization to a new era of regenerative technology.</p>
-  
-  <p>[2] This document was inspired by numerous previous efforts including the Maintenance Manifesto, the Solar Protocol, and various digital rights frameworks.</p>
-</div>
-
-<p>Greetings,</p>
-
-<p>Somehow, in my short time alive, I believe we are entering into a <strong>second Zeitgeist</strong>—a cultural shift as seismic as the first Zeitgeist I experienced on the morning of <strong>September 11th, 2001</strong>.</p>
+<p>Somehow, in my short time being alive, I believe we are entering into a <strong>second Zeitgeist</strong>—a cultural shift as seismic as the first Zeitgeist I experienced on the morning of <strong>September 11th, 2001</strong>.</p>
 
 <p>Then, we transitioned rapidly into an era of <strong>obedience by design</strong>.  At first, it was about safety, about resilience.  However…what followed—surveillance, censorship, militarized borders, the erosion of civic trust—was something far deeper, and far more permanent.</p>
 
@@ -220,9 +250,9 @@ The war on memory.<br />
 <section id="timeline" class="timeline-section">
   <h2>Our Journey</h2>
   <div class="timeline-container">
-    <iframe src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1YyekWvRnZAyO8XjlRzh8v3rrq2l5yQyalOhMzOijVkU&font=Default&lang=en&initial_zoom=2&height=650" width="100%" height="650" frameborder="0"></iframe>
+    <iframe src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pub?output=csv&amp;font=Default&amp;lang=en&amp;initial_zoom=2&amp;height=650" width="100%" height="650" frameborder="0"></iframe>
   </div>
-  <p class="timeline-note">Timeline data is maintained in a <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pubhtml?gid=381460458&single=true" target="_blank">Google Sheet</a> that can be collaboratively edited.</p>
+  <p class="timeline-note">Timeline data is maintained in a <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pubhtml" target="_blank">Google Sheet</a> that can be collaboratively edited. Make sure to <a href="https://timeline.knightlab.com/#make" target="_blank">publish the spreadsheet to the web</a> for the timeline to work.</p>
 </section>
 
 <style>
@@ -353,7 +383,7 @@ The war on memory.<br />
       <div class="timeline-event">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
-          <h3 class="event-title">AFRICOM Drone Strikes & Raids (Ongoing)</h3>
+          <h3 class="event-title">AFRICOM Drone Strikes &amp; Raids (Ongoing)</h3>
           <div class="event-period">
             <span class="event-date">2010</span>
             
@@ -423,7 +453,7 @@ The war on memory.<br />
       </div>
     
   </div>
-  <p class="timeline-note">Timeline data is maintained in a <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pubhtml?gid=381460458&single=true" target="_blank">Google Sheet</a> that can be collaboratively edited.</p>
+  <p class="timeline-note">Timeline data is maintained in a <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pubhtml?gid=381460458&amp;single=true" target="_blank">Google Sheet</a> that can be collaboratively edited.</p>
 </section>
 
 <style>
@@ -559,28 +589,27 @@ The war on memory.<br />
 
 <p>We are building ever-more-powerful AI systems atop a <strong>broken and corrupted substrate</strong>:</p>
 <ul>
-  <li><strong>Information ecosystems warped by profit</strong> — where surveillance masquerades as convenience. Mark Zuckerberg didn't just build a social network—he studied Mandarin, courted autocracy, and developed an entire platform tailored to feed information directly to the Chinese Communist Party. This wasn't accidental; it was strategic. If our leading technocrats bend the knee so quickly, so willingly—<strong>what hope do we have of regulating the next generation of cognitive empires?</strong></li>
-  <li><strong>Civic platforms that ignore the invisible</strong> — the destitute, the undocumented, the digitally disconnected. It no longer matters your race, creed, or politics—if you're not monetizable, if you're not loud in the right algorithmic register, then you <strong>simply do not exist</strong>.  The quiet soup kitchen. The grandmother-led food pantry.  The local healer without a Twitter account.  Gone.</li>
-  <li><strong>Interfaces that confuse engagement with meaning</strong> — optimized for consumption, not connection.  "Shop here."  "Buy more."  "Swipe now."  Designed to <strong>keep you spending just enough to stay numb</strong>, but never enough to reach sufficiency.  They are not neutral UX flows—they are <strong>psychological casinos engineered to erode sovereignty.</strong></li>
+  <li><strong>Information ecosystems warped by profit</strong> — where surveillance masquerades as convenience. Mark Zuckerberg didn’t just build a social network—he studied Mandarin, courted autocracy, and developed an entire platform tailored to feed information directly to the Chinese Communist Party. This wasn’t accidental; it was strategic. If our leading technocrats bend the knee so quickly, so willingly—<strong>what hope do we have of regulating the next generation of cognitive empires?</strong></li>
+  <li><strong>Civic platforms that ignore the invisible</strong> — the destitute, the undocumented, the digitally disconnected. It no longer matters your race, creed, or politics—if you’re not monetizable, if you’re not loud in the right algorithmic register, then you <strong>simply do not exist</strong>.  The quiet soup kitchen. The grandmother-led food pantry.  The local healer without a Twitter account.  Gone.</li>
+  <li><strong>Interfaces that confuse engagement with meaning</strong> — optimized for consumption, not connection.  “Shop here.”  “Buy more.”  “Swipe now.”  Designed to <strong>keep you spending just enough to stay numb</strong>, but never enough to reach sufficiency.  They are not neutral UX flows—they are <strong>psychological casinos engineered to erode sovereignty.</strong></li>
 </ul>
 
-<p>If we do not rebuild our <strong>epistemic engines</strong>—those that help people <strong>know</strong>, <strong>decide</strong>, and <strong>act together</strong>—we won't just lose truth.</p>
+<p>If we do not rebuild our <strong>epistemic engines</strong>—those that help people <strong>know</strong>, <strong>decide</strong>, and <strong>act together</strong>—we won’t just lose truth.</p>
 
 <p>We will lose the <em>capacity for collective coherence</em>.  <strong>We will have no ontological metanarrative whatsoever.</strong></p>
 
-<p>Therefore, I've spent my career building or chasing <strong>counter-systems</strong>.</p>
+<p>Therefore, I’ve spent my career building or chasing <strong>counter-systems</strong>.</p>
 
 <p>Tools that turn complexity into clarity.
 Chaos into coordination.
 Automation into <strong>alignment with human dignity</strong>.</p>
 
-<p>I've built or had the esteemed privilege of working at building:</p>
+<p>I’ve built or had the esteemed privilege of working at building:</p>
 <ul>
-  <li><strong>FLOW / KOS / Principus</strong> — A cognitive operating system designed for intelligent agents navigating contradiction, trust decay, and information overload.</li>
-  <li><strong>Unusual Whales</strong> — Financial truth-telling at scale; an antidote to Bloomberg's gated empire, scaled to 100K+ users.</li>
-  <li><strong>Civic Atlas</strong> — A decentralized civic discovery engine elevating the invisible work of mutual aid, food pantries, and local resilience.</li>
-  <li><strong>Markets News</strong> — A public counter-disinformation engine streaming financial literacy with integrity-first AI editorial.</li>
-  <li><strong>CardByMe</strong> — A human reconnection tool. In a world of frictionless swipe fatigue, it uses LLMs to bring people back to one another—one heartfelt postcard at a time.</li>
+  <li><strong>Unusual Whales</strong> — The true democratization of stock market information; the counter to the Bloomberg terminal</li>
+  <li><strong>FLOW / KOS / Principus</strong> — A testable governance and reasoning layer for intelligent agents navigating contradiction, shifting trust, and epistemic thresholds</li>
+  <li><strong>Civic Atlas</strong> — A decentralized civic discovery engine designed to map hidden local opportunity and lift the quiet voices ignored by SEO and adtech</li>
+  <li><strong>Markets News</strong> &amp; <strong>CardByMe</strong> — LLM-powered platforms fighting financial disinformation and reviving human presence through postal tech</li>
 </ul>
 
 <p>All rooted in the belief that <strong>technology must restore balance</strong>.<br />
@@ -593,11 +622,11 @@ We need <strong>counter-infrastructure</strong>.</p>
 
 <ul>
   <li>Systems that <strong>flag contradiction</strong>, not smooth it over</li>
-  <li>Agents that say, "This idea doesn't align with your goals—pause?"</li>
+  <li>Agents that say, “This idea doesn’t align with your goals—pause?”</li>
   <li>Architectures that encode <strong>ontological repair</strong>, not just data pipelining</li>
 </ul>
 
-<p>Most "ethical AI" efforts stop at conversation.<br />
+<p>Most “ethical AI” efforts stop at conversation.<br />
 I believe we must go further—into <strong>confrontation, capacity, and care</strong>.</p>
 
 <p><strong>Not just better intentions, but better <em>ops</em>.</strong><br />
@@ -630,7 +659,7 @@ AI Systems Strategist • Civic Technologist • Builder of Meaning<br />
 
 <h2 id="️-a-call-to-collaboration">🛠️ A Call to Collaboration</h2>
 
-<p>If you're working on any of this—truth restoration, civic tech, ethical AI, counter-infrastructure—I want to hear from you.</p>
+<p>If you’re working on any of this—truth restoration, civic tech, ethical AI, counter-infrastructure—I want to hear from you.</p>
 
 <p>Are you building systems to resist empire?  Helping communities rediscover themselves?  Designing agents that respect context?</p>
 
@@ -638,13 +667,19 @@ AI Systems Strategist • Civic Technologist • Builder of Meaning<br />
 🌐 Connect: <a href="https://www.linkedin.com/in/stephen-wooten-ii/">LinkedIn</a><br />
 🛠️ Collaborate: <a href="https://github.com/stephen-netu/">Github</a></p>
 
+<div class="footnotes">
+  <p>[1] The term "Zeitgeist" refers to the defining spirit or mood of a particular period. We call this the "Second Zeitgeist" to signal a transition from the first digital age dominated by extraction and centralization to a new era of regenerative technology.</p>
+  
+  <p>[2] This document was inspired by numerous previous efforts including the Maintenance Manifesto, the Solar Protocol, and various digital rights frameworks.</p>
+</div>
+
 <hr />
 
 <p><em>This letter is a living document. See our <a href="/changelog">changelog</a> for a history of how our understanding has evolved.</em></p>
 
       </article>
       
-      <div class="pdf-export-container no-print">
+      <div class="pdf-export-container no-print" style="display: flex; justify-content: center;">
   <button id="export-pdf" class="export-button">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -721,14 +756,14 @@ AI Systems Strategist • Civic Technologist • Builder of Meaning<br />
         <!-- Only include changelog on the changelog page -->
       
       
-      <div class="colophon">
+      <div class="colophon" style="text-align: center;">
         <h2>Colophon</h2>
         <p>This document was created with Jekyll and designed for both web and print distribution. 
           The typefaces used are system fonts for maximum compatibility.</p>
         <p>Last updated: April 23, 2025</p>
         
         <div class="qr-code">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost:4000/second-zeitgeist/" alt="QR Code to this site">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=/second-zeitgeist/&color=000000&bgcolor=ffffff" alt="QR Code to this site" class="qr-code-img">
           <p>Scan to visit the digital version</p>
         </div>
       </div>

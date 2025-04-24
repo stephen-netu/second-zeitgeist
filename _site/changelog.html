@@ -8,7 +8,63 @@
   
   <!-- Directly include custom styles -->
   <style>
-    /* Emergency Styles for Dark Mode */
+    /* Emergency Styles for positioning and layout */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      border-bottom: 1px solid #eaecef;
+      background-color: #fff;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+      height: 120px;
+    }
+
+    .main-content {
+      padding: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 120px; /* Same as header height */
+      margin-bottom: 60px; /* Same as footer height */
+      padding-bottom: 48px; /* Extra padding at bottom */
+    }
+
+    .site-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      border-top: 1px solid #eaecef;
+      font-size: 0.9em;
+      background-color: #fff;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+      height: 60px;
+    }
+
+    /* Dark mode adjustments */
     .theme-toggle {
       position: absolute;
       top: 20px;
@@ -43,16 +99,42 @@
 
     .dark-mode .site-header {
       border-bottom-color: #333333;
+      background-color: #121212;
     }
 
     .dark-mode .site-footer {
       border-top-color: #333333;
       color: #aaaaaa;
+      background-color: #121212;
+    }
+    
+    /* Override any theme-specific styles */
+    header, footer, section {
+      float: none !important;
+      position: static !important;
+      width: 100% !important;
+    }
+    
+    header.site-header {
+      position: fixed !important;
+    }
+    
+    footer.site-footer {
+      position: fixed !important;
+    }
+    
+    .container-lg, .container {
+      max-width: 100% !important;
+      width: 100% !important;
     }
   </style>
   
   <!-- Jekyll-processed stylesheets -->
   <link rel="stylesheet" href="/second-zeitgeist/assets/css/style.css">
+  
+  <!-- Direct CSS file that overrides everything -->
+  <link rel="stylesheet" href="/second-zeitgeist/assets/css/style.css">
+  
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Changelog - Second Zeitgeist | Second Zeitgeist Manifesto</title>
 <meta name="generator" content="Jekyll v3.10.0" />
@@ -60,14 +142,14 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="History of changes to the Second Zeitgeist manifesto" />
 <meta property="og:description" content="History of changes to the Second Zeitgeist manifesto" />
-<link rel="canonical" href="http://localhost:4000/second-zeitgeist/changelog.html" />
-<meta property="og:url" content="http://localhost:4000/second-zeitgeist/changelog.html" />
+<link rel="canonical" href="/second-zeitgeist/changelog.html" />
+<meta property="og:url" content="/second-zeitgeist/changelog.html" />
 <meta property="og:site_name" content="Second Zeitgeist Manifesto" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Changelog - Second Zeitgeist" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"History of changes to the Second Zeitgeist manifesto","headline":"Changelog - Second Zeitgeist","url":"http://localhost:4000/second-zeitgeist/changelog.html"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"History of changes to the Second Zeitgeist manifesto","headline":"Changelog - Second Zeitgeist","url":"/second-zeitgeist/changelog.html"}</script>
 <!-- End Jekyll SEO tag -->
 
 </head>
@@ -87,39 +169,41 @@
     </header>
 
     <main class="main-content">
-      <!-- Simple Quote Carousel -->
-<div class="quote-carousel-container">
+      <!-- Real Quote Carousel -->
+<div class="quote-carousel-container" style="text-align: center; max-width: 800px; margin: 0 auto;">
   <div class="quote-slide">
-    <blockquote>"Technology should exist to restore balance."</blockquote>
-    <cite>— Zeitgeist Manifesto</cite>
+    <blockquote>"When machines and computers, profit motives and property rights are considered more important than people, the giant triplets of racism, materialism and militarism are incapable of being conquered."</blockquote>
+    <cite>— Dr. Martin Luther King Jr., 1967</cite>
   </div>
   <div class="quote-slide">
-    <blockquote>"We don't need more charters. We need counter-infrastructure."</blockquote>
-    <cite>— Community Contributor</cite>
+    <blockquote>"The most common way people give up their power is by thinking they don’t have any."</blockquote>
+    <cite>— Alice Walker</cite>
   </div>
   <div class="quote-slide">
-    <blockquote>"AI must learn to say: 'This idea contradicts your goals. Shall we pause?'"</blockquote>
-    <cite>— Tech Ethics Statement</cite>
+    <blockquote>"The medium is the message."</blockquote>
+    <cite>— Marshall McLuhan</cite>
+  </div>
+  <div class="quote-slide">
+    <blockquote>"It is not only what we do, but also what we do not do, for which we are accountable."</blockquote>
+    <cite>— Molière</cite>
+  </div>
+  <div class="quote-slide">
+    <blockquote>"We are drowning in information, while starving for wisdom."</blockquote>
+    <cite>— E.O. Wilson</cite>
+  </div>
+  <div class="quote-slide">
+    <blockquote>"The great enemy of the truth is very often not the lie—deliberate, contrived and dishonest—but the myth—persistent, persuasive, and unrealistic."</blockquote>
+    <cite>— John F. Kennedy</cite>
+  </div>
+  <div class="quote-slide">
+    <blockquote>"He who controls the past controls the future. He who controls the present controls the past."</blockquote>
+    <cite>— George Orwell, *1984*</cite>
   </div>
   <div class="carousel-indicators">
-    <!-- Indicators will be added by JavaScript -->
+    <!-- JavaScript will populate these -->
   </div>
 </div>
 
-<!-- Print-specific styles that won't be overridden by the dark mode -->
-<style>
-  @media print {
-    .quote-slide {
-      margin-bottom: 2rem;
-      page-break-inside: avoid;
-      display: block !important;
-    }
-    
-    .carousel-indicators {
-      display: none !important;
-    }
-  }
-</style> 
       
       <article class="page-content">
         <h1 id="changelog">Changelog</h1>
@@ -414,349 +498,7 @@
 
       </article>
       
-      <div id="timeline-wrapper">
-        <!-- Try TimelineJS first -->
-        <div id="timelinejs-container">
-          <!-- TimelineJS Visualization -->
-<section id="timeline" class="timeline-section">
-  <h2>Our Journey</h2>
-  <div class="timeline-container">
-    <iframe src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1YyekWvRnZAyO8XjlRzh8v3rrq2l5yQyalOhMzOijVkU&font=Default&lang=en&initial_zoom=2&height=650" width="100%" height="650" frameborder="0"></iframe>
-  </div>
-  <p class="timeline-note">Timeline data is maintained in a <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pubhtml?gid=381460458&single=true" target="_blank">Google Sheet</a> that can be collaboratively edited.</p>
-</section>
-
-<style>
-  .timeline-section {
-    margin: 3rem 0;
-  }
-  
-  .timeline-container {
-    margin: 2rem 0;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  
-  .timeline-note {
-    font-size: 0.9rem;
-    color: #586069;
-    text-align: center;
-  }
-</style> 
-        </div>
-        
-        <!-- Fallback to native timeline if TimelineJS fails -->
-        <div id="native-timeline-container" style="display: none;">
-          <!-- Native Jekyll Timeline -->
-<section id="timeline" class="timeline-section">
-  <h2>Our Journey</h2>
-  <div class="timeline-container native-timeline">
-    <div class="timeline-line"></div>
-    
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Operation Just Cause (Panama)</h3>
-          <div class="event-period">
-            <span class="event-date">1989</span>
-            
-          </div>
-          <p class="event-description">The U.S. invaded Panama to depose Manuel Noriega. Marked the beginning of Netu's birth-era conflict list.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Gulf War</h3>
-          <div class="event-period">
-            <span class="event-date">1990</span>
-            
-            <span class="event-separator">—</span>
-            <span class="event-end-date">1991</span>
-            
-          </div>
-          <p class="event-description">Operation Desert Storm. U.S.-led coalition liberated Kuwait from Iraq. Signaled U.S. military dominance post-Cold War.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Operation Restore Hope (Somalia)</h3>
-          <div class="event-period">
-            <span class="event-date">1992</span>
-            
-            <span class="event-separator">—</span>
-            <span class="event-end-date">1995</span>
-            
-          </div>
-          <p class="event-description">U.S. humanitarian mission turned into combat. Notoriously escalated with the 'Black Hawk Down' incident.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Operation Uphold Democracy (Haiti)</h3>
-          <div class="event-period">
-            <span class="event-date">1994</span>
-            
-          </div>
-          <p class="event-description">U.S. intervened to restore democratically elected President Aristide following a coup.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Kosovo Bombings via NATO</h3>
-          <div class="event-period">
-            <span class="event-date">1999</span>
-            
-          </div>
-          <p class="event-description">U.S. participated in NATO airstrikes against Yugoslavia over Kosovo. Highly controversial; Congress was split.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Afghanistan War</h3>
-          <div class="event-period">
-            <span class="event-date">2001</span>
-            
-            <span class="event-separator">—</span>
-            <span class="event-end-date">2021</span>
-            
-          </div>
-          <p class="event-description">Launched post-9/11 under AUMF. Longest U.S. war. Personal toll: Netu's stepbrother returned broken.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Iraq War</h3>
-          <div class="event-period">
-            <span class="event-date">2003</span>
-            
-            <span class="event-separator">—</span>
-            <span class="event-end-date">2011</span>
-            
-          </div>
-          <p class="event-description">Invasion justified by WMD claims. No formal declaration. Left a power vacuum, seeded extremism.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">AFRICOM Drone Strikes & Raids (Ongoing)</h3>
-          <div class="event-period">
-            <span class="event-date">2010</span>
-            
-            <span class="event-separator">—</span>
-            <span class="event-end-date">Present</span>
-            
-          </div>
-          <p class="event-description">Covert drone operations across Africa. Rarely discussed in public. Bypassed most oversight.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Operation Odyssey Dawn (Libya)</h3>
-          <div class="event-period">
-            <span class="event-date">2011</span>
-            
-          </div>
-          <p class="event-description">U.S. joined NATO airstrikes to enforce a no-fly zone during Libyan Civil War. Bypassed Congress.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Syria Airstrikes (Ongoing)</h3>
-          <div class="event-period">
-            <span class="event-date">2014</span>
-            
-            <span class="event-separator">—</span>
-            <span class="event-end-date">Present</span>
-            
-          </div>
-          <p class="event-description">Airstrikes against ISIS and others, claimed under post-9/11 AUMF. Yet ISIS did not exist in 2001.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Support for Saudi-led War in Yemen</h3>
-          <div class="event-period">
-            <span class="event-date">2015</span>
-            
-            <span class="event-separator">—</span>
-            <span class="event-end-date">Present</span>
-            
-          </div>
-          <p class="event-description">U.S. provided weapons, intelligence, and refueling to coalition. Caused massive humanitarian crisis.</p>
-        </div>
-      </div>
-    
-      <div class="timeline-event">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <h3 class="event-title">Support for Ukraine (Ongoing)</h3>
-          <div class="event-period">
-            <span class="event-date">2022</span>
-            
-            <span class="event-separator">—</span>
-            <span class="event-end-date">Present</span>
-            
-          </div>
-          <p class="event-description">Massive U.S. aid to Ukraine following Russian invasion. Billions in arms, logistics, and intelligence.</p>
-        </div>
-      </div>
-    
-  </div>
-  <p class="timeline-note">Timeline data is maintained in a <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS4CSlC4qRN5AONG8pK8s7Ozr0kcbCBgCkv9c1Pswrgiv9II6ex_Z997L8jJRzWBvL9I36w8FhDmZYP/pubhtml?gid=381460458&single=true" target="_blank">Google Sheet</a> that can be collaboratively edited.</p>
-</section>
-
-<style>
-  .timeline-section {
-    margin: 3rem 0;
-  }
-  
-  .timeline-container {
-    margin: 2rem 0;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    overflow: hidden;
-    padding: 2rem 1rem;
-  }
-  
-  .native-timeline {
-    position: relative;
-    padding: 30px 0;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .timeline-line {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 4px;
-    background-color: #e1e4e8;
-    transform: translateX(-50%);
-  }
-  
-  .timeline-event {
-    position: relative;
-    margin-bottom: 30px;
-    padding-left: calc(50% + 30px);
-    clear: both;
-  }
-  
-  .timeline-event:nth-child(even) {
-    padding-left: 0;
-    padding-right: calc(50% + 30px);
-  }
-  
-  .timeline-dot {
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    width: 16px;
-    height: 16px;
-    background-color: #0366d6;
-    border-radius: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-  }
-  
-  .timeline-content {
-    background-color: #f6f8fa;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    padding: 15px;
-    position: relative;
-  }
-  
-  .timeline-content:after {
-    content: "";
-    position: absolute;
-    top: 15px;
-    right: 100%;
-    border: 10px solid transparent;
-    border-right-color: #f6f8fa;
-  }
-  
-  .timeline-event:nth-child(even) .timeline-content:after {
-    right: auto;
-    left: 100%;
-    border-right-color: transparent;
-    border-left-color: #f6f8fa;
-  }
-  
-  .event-title {
-    margin-top: 0;
-    font-size: 1.1rem;
-    color: #24292e;
-  }
-  
-  .event-period {
-    font-size: 0.9rem;
-    color: #586069;
-    margin-bottom: 10px;
-  }
-  
-  .event-description {
-    margin-bottom: 0;
-    font-size: 0.95rem;
-  }
-  
-  .timeline-note {
-    font-size: 0.9rem;
-    color: #586069;
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  @media (max-width: 768px) {
-    .timeline-line {
-      left: 20px;
-    }
-    
-    .timeline-event, 
-    .timeline-event:nth-child(even) {
-      padding-left: 50px;
-      padding-right: 0;
-    }
-    
-    .timeline-dot {
-      left: 20px;
-    }
-    
-    .timeline-content:after,
-    .timeline-event:nth-child(even) .timeline-content:after {
-      right: 100%;
-      left: auto;
-      border-right-color: #f6f8fa;
-      border-left-color: transparent;
-    }
-  }
-</style> 
-        </div>
-      </div>
-      
-      <div class="pdf-export-container no-print">
+      <div class="pdf-export-container no-print" style="display: flex; justify-content: center;">
   <button id="export-pdf" class="export-button">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -831,14 +573,14 @@
       
       
       
-      <div class="colophon">
+      <div class="colophon" style="text-align: center;">
         <h2>Colophon</h2>
         <p>This document was created with Jekyll and designed for both web and print distribution. 
           The typefaces used are system fonts for maximum compatibility.</p>
         <p>Last updated: April 23, 2025</p>
         
         <div class="qr-code">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://localhost:4000/second-zeitgeist/" alt="QR Code to this site">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=/second-zeitgeist/&color=000000&bgcolor=ffffff" alt="QR Code to this site" class="qr-code-img">
           <p>Scan to visit the digital version</p>
         </div>
       </div>
