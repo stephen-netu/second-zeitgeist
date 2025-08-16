@@ -1,0 +1,19 @@
+<div class="quotes-linear">
+  {% assign quotes = site.data.quotes %}
+  {% if quotes and quotes.size > 0 %}
+    <ol>
+    {% for q in quotes %}
+      <li class="quote-item">
+        <blockquote>
+          <p>{{ q.text }}</p>
+          {% if q.cite %}
+            <cite>&mdash; {{ q.cite }}</cite>
+          {% endif %}
+        </blockquote>
+      </li>
+    {% endfor %}
+    </ol>
+  {% else %}
+    <p>No quotes available.</p>
+  {% endif %}
+</div>

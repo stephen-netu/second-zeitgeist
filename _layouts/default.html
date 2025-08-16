@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-baseurl="{{ site.baseurl }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,11 +31,20 @@
         <a href="{{ '/projects' | relative_url }}" class="nav-link">Projects</a>
         <a href="{{ '/colophon' | relative_url }}" class="nav-link">Colophon</a>
         <a href="{{ '/changelog' | relative_url }}" class="nav-link">Changelog</a>
+        <a href="{{ '/print/' | relative_url }}" class="nav-link">Print</a>
       </nav>
+      <div class="site-search" role="search">
+        <label class="sr-only" for="site-search-input">Search</label>
+        <input id="site-search-input" type="search" role="combobox" aria-autocomplete="list" placeholder="Search timeline, quotes, pages…" aria-label="Search site" autocomplete="off" aria-controls="site-search-listbox" aria-expanded="false" />
+        <button id="site-search-clear" class="clear-search" aria-label="Clear search" hidden>✕</button>
+        <div id="site-search-results" class="search-results" hidden></div>
+      </div>
     </header>
 
     <main class="main-content">
-      {% include quote-carousel.html %}
+      <section id="quotes">
+        {% include quote-carousel.html %}
+      </section>
       
       <article class="page-content">
         {{ content }}
@@ -101,6 +110,7 @@
 
   <!-- Custom scripts -->
   <script src="{{ '/assets/js/carousel.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/search.js' | relative_url }}"></script>
   
   {% if page.custom_js %}
     {% for js_file in page.custom_js %}

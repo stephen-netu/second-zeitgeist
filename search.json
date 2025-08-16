@@ -1,0 +1,44 @@
+---
+layout: null
+permalink: /search.json
+---
+{
+  "events": [
+    {% assign events = site.data.epistemology | default: site.data.timeline %}
+    {% for e in events %}
+    {
+      "type": "event",
+      "title": {{ e.title | jsonify }},
+      "url": {{ '/' | relative_url | append: '#timeline' | jsonify }},
+      "date": {{ e.date | jsonify }},
+      "sort_key": {{ e.sort_key | default: e.date | jsonify }},
+      "facets": {{ e.facets | jsonify }},
+      "claim": {{ e.claim | jsonify }},
+      "description": {{ e.description | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "quotes": [
+    {% for q in site.data.quotes %}
+    {
+      "type": "quote",
+      "text": {{ q.text | jsonify }},
+      "cite": {{ q.cite | jsonify }},
+      "url": {{ '/' | relative_url | append: '#quotes' | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "pages": [
+    {% assign pages = site.pages %}
+    {% for p in pages %}
+    {% unless p.url == '/search.json' or p.url contains '/assets/' or p.layout == 'null' %}
+    {
+      "type": "page",
+      "title": {{ p.title | default: site.title | jsonify }},
+      "url": {{ p.url | relative_url | jsonify }},
+      "content": {{ p.content | strip_html | strip_newlines | truncate: 400 | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endunless %}
+    {% endfor %}
+  ]
+}

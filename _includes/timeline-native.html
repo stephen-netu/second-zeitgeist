@@ -5,17 +5,20 @@
     <div class="filters-row">
       <strong>Filter:</strong>
       <span class="facets"></span>
-      <button type="button" class="clear-filters">Clear</button>
+      <div class="facet-chips" aria-live="polite" aria-label="Active filters"></div>
+      <button type="button" class="clear-filters" aria-disabled="true">Clear</button>
     </div>
     <div class="filters-row">
       <input type="search" id="timeline-search" placeholder="Search events..." aria-label="Search timeline">
       <input type="text" id="date-start" placeholder="Start (YYYY or YYYY-MM)" inputmode="numeric" aria-label="Start date">
       <input type="text" id="date-end" placeholder="End (YYYY or YYYY-MM)" inputmode="numeric" aria-label="End date">
     </div>
+    <div class="tl-live sr-only" aria-live="polite"></div>
   </div>
   <div class="timeline-container native-timeline">
     <div class="timeline-line"></div>
     {% assign events = site.data.epistemology | default: site.data.timeline %}
+    {% assign events = events | sort: 'sort_key' %}
     {% for event in events %}
       <div class="timeline-event" tabindex="0" data-facets="{% if event.facets %}{{ event.facets | join: ',' }}{% endif %}">
         <div class="timeline-dot"></div>
@@ -65,10 +68,12 @@
       const events = container.querySelectorAll('.timeline-event');
       const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const facetsSpan = container.querySelector('.timeline-filters .facets');
+      const chipsBox = container.querySelector('.timeline-filters .facet-chips');
       const clearBtn = container.querySelector('.timeline-filters .clear-filters');
       const searchInput = container.querySelector('#timeline-search');
       const startInput = container.querySelector('#date-start');
       const endInput = container.querySelector('#date-end');
+      const live = container.querySelector('.timeline-filters .tl-live');
       if (!facetsSpan || !clearBtn) return;
 
       // Helpers
@@ -133,8 +138,9 @@
       if (startInput) startInput.value = initStart;
       if (endInput) endInput.value = initEnd;
 
-      // Build checkboxes with initial checks from URL
+      // Build checkboxes with initial checks from URL and keep references for counts
       const selected = new Set();
+      const facetRefs = new Map(); // f -> {label, checkbox, textNode, countEl}
       facetSet.forEach(f => {
         const id = 'facet-'+f.replace(/[^a-z0-9_-]/gi,'').toLowerCase();
         const label = document.createElement('label');
@@ -149,9 +155,16 @@
           updateStateAndFilter();
         });
         label.appendChild(cb);
-        const text = document.createTextNode(' '+f);
-        label.appendChild(text);
+        const txt = document.createElement('span');
+        txt.className = 'facet-text';
+        txt.textContent = ' '+f;
+        const cnt = document.createElement('span');
+        cnt.className = 'facet-count';
+        cnt.setAttribute('aria-hidden','true');
+        label.appendChild(txt);
+        label.appendChild(cnt);
         facetsSpan.appendChild(label);
+        facetRefs.set(f, {label, checkbox: cb, textNode: txt, countEl: cnt});
       });
 
       clearBtn.addEventListener('click', () => {
@@ -163,12 +176,66 @@
         updateStateAndFilter();
       });
 
+      function updateChips(){
+        if (!chipsBox) return;
+        chipsBox.innerHTML = '';
+        if (!selected.size) return;
+        Array.from(selected).sort().forEach(f=>{
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'facet-chip';
+          btn.setAttribute('data-f', f);
+          btn.setAttribute('aria-label', `Remove filter ${f}`);
+          btn.textContent = f+' \u2715';
+          btn.addEventListener('click', ()=>{
+            const ref = facetRefs.get(f);
+            if (ref) { ref.checkbox.checked = false; }
+            selected.delete(f);
+            updateStateAndFilter();
+          });
+          chipsBox.appendChild(btn);
+        });
+      }
+
+      function updateCounts(q, s, e){
+        // counts by facet considering text/date filters only
+        const ql = (q||'').toLowerCase();
+        const startInt = parseDateToInt(s,false);
+        const endInt = parseDateToInt(e,true);
+        const counts = new Map();
+        events.forEach(ev => {
+          // apply text/date filters first
+          const textOk = ql ? eventText(ev).includes(ql) : true;
+          if (!textOk) return;
+          const [evStart, evEnd] = eventDateRangeInt(ev);
+          const startOk = (startInt==null) ? true : (evEnd==null || evEnd >= startInt);
+          const endOk = (endInt==null) ? true : (evStart==null || evStart <= endInt);
+          if (!(startOk && endOk)) return;
+          const facets = (ev.getAttribute('data-facets')||'').split(',').map(s=>s.trim()).filter(Boolean);
+          facets.forEach(f=>counts.set(f, (counts.get(f)||0)+1));
+        });
+        // update UI labels
+        facetRefs.forEach((ref, f)=>{
+          const n = counts.get(f) || 0;
+          ref.countEl.textContent = n ? ` (${n})` : '';
+        });
+      }
+
+      function updateClearBtn(){
+        const any = selected.size || (searchInput?.value?.trim()) || (startInput?.value?.trim()) || (endInput?.value?.trim());
+        if (any){ clearBtn.removeAttribute('aria-disabled'); clearBtn.disabled = false; }
+        else { clearBtn.setAttribute('aria-disabled','true'); clearBtn.disabled = true; }
+      }
+
       const updateStateAndFilter = debounce(() => {
         const q = (searchInput?.value || '').trim();
         const s = (startInput?.value || '').trim();
         const e = (endInput?.value || '').trim();
         updateURL(q, s, e, selected);
         applyFilter(q, s, e);
+        updateCounts(q, s, e);
+        updateChips();
+        updateClearBtn();
       }, 150);
 
       if (searchInput) searchInput.addEventListener('input', updateStateAndFilter);
@@ -179,6 +246,7 @@
         const ql = (q||'').toLowerCase();
         const startInt = parseDateToInt(startStr, false);
         const endInt = parseDateToInt(endStr, true);
+        let shown = 0;
         events.forEach(ev => {
           // Facets
           const facets = (ev.getAttribute('data-facets')||'').split(',').map(s=>s.trim()).filter(Boolean);
@@ -191,12 +259,18 @@
           const [evStart, evEnd] = eventDateRangeInt(ev);
           const startOk = (startInt==null) ? true : (evEnd==null || evEnd >= startInt);
           const endOk = (endInt==null) ? true : (evStart==null || evStart <= endInt);
-          ev.style.display = (startOk && endOk) ? '' : 'none';
+          const vis = (startOk && endOk);
+          ev.style.display = vis ? '' : 'none';
+          if (vis) shown++;
         });
+        if (live) { live.textContent = `Showing ${shown} event${shown===1?'':'s'}.`; }
       }
 
       // Initial filter application from URL
       applyFilter(initQ, initStart, initEnd);
+      updateCounts(initQ, initStart, initEnd);
+      updateChips();
+      updateClearBtn();
 
       // Keyboard navigation between visible events (j/k or Arrow keys)
       container.addEventListener('keydown', (e) => {
