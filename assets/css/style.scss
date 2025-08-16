@@ -30,6 +30,12 @@
   --footer-height: 60px;
 }
 
+/* Print page setup */
+@page {
+  size: Letter;
+  margin: 0.75in;
+}
+
 /* Base styles with improved spacing */
 html, body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -168,6 +174,26 @@ a:hover {
 
 .timeline-section {
   margin: var(--spacing-xl) 0;
+}
+
+/* Timeline toggle UI */
+.timeline-toggle {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  margin: var(--spacing-sm) 0;
+}
+.timeline-toggle button {
+  padding: 6px 10px;
+  border: 1px solid var(--light-border);
+  background: var(--light-surface);
+  color: var(--light-text-primary);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.timeline-toggle button.active {
+  border-color: var(--light-accent);
+  color: var(--light-accent);
 }
 
 /* Fixed Footer styles */
@@ -337,6 +363,20 @@ body.dark-mode hr {
   background-color: var(--dark-border);
 }
 
+/* PDF Export (Zine) mode tweaks before print */
+body.pdf-export-mode .site-header,
+body.pdf-export-mode .site-footer {
+  position: static;
+  height: auto;
+}
+body.pdf-export-mode .main-content {
+  margin: 0;
+  padding: 0;
+}
+body.pdf-export-mode .no-print {
+  display: none !important;
+}
+
 /* Theme toggle button positioning */
 .theme-toggle {
   position: fixed;
@@ -397,7 +437,7 @@ body.dark-mode hr {
     text-decoration: none;
   }
   
-  .site-nav, .theme-toggle {
+  .site-nav, .theme-toggle, .no-print {
     display: none;
   }
   

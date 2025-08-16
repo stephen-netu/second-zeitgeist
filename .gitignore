@@ -16,6 +16,7 @@ dist/
 build/
 out/
 .next/
+_site/
 
 # Environment variables
 .env

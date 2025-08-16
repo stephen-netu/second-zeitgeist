@@ -6,133 +6,7 @@
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
   
-  <!-- Directly include custom styles -->
-  <style>
-    /* Emergency Styles for positioning and layout */
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      padding: 0;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      padding: 16px;
-      border-bottom: 1px solid #eaecef;
-      background-color: #fff;
-      width: 100%;
-      box-sizing: border-box;
-      z-index: 1000;
-      height: 120px;
-    }
-
-    .main-content {
-      padding: 16px;
-      width: 100%;
-      box-sizing: border-box;
-      margin-top: 120px; /* Same as header height */
-      margin-bottom: 60px; /* Same as footer height */
-      padding-bottom: 48px; /* Extra padding at bottom */
-    }
-
-    .site-footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 16px;
-      border-top: 1px solid #eaecef;
-      font-size: 0.9em;
-      background-color: #fff;
-      width: 100%;
-      box-sizing: border-box;
-      z-index: 1000;
-      height: 60px;
-    }
-
-    /* Dark mode adjustments */
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(0, 0, 0, 0.1);
-      border: none;
-      border-radius: 50%;
-      padding: 8px;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    body.dark-mode {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
-
-    .dark-mode a {
-      color: #64b5f6;
-    }
-
-    .dark-mode h1, 
-    .dark-mode h2, 
-    .dark-mode h3 {
-      color: #e0e0e0;
-    }
-
-    .dark-mode .site-header {
-      border-bottom-color: #333333;
-      background-color: #121212;
-    }
-
-    .dark-mode .site-footer {
-      border-top-color: #333333;
-      color: #aaaaaa;
-      background-color: #121212;
-    }
-    
-    /* Override any theme-specific styles */
-    header, footer, section {
-      float: none !important;
-      position: static !important;
-      width: 100% !important;
-    }
-    
-    header.site-header {
-      position: fixed !important;
-    }
-    
-    footer.site-footer {
-      position: fixed !important;
-    }
-    
-    .container-lg, .container {
-      max-width: 100% !important;
-      width: 100% !important;
-    }
-  </style>
-  
-  <!-- Jekyll-processed stylesheets -->
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-  
-  <!-- Direct CSS file that overrides everything -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   
   {% seo %}
@@ -217,27 +91,6 @@
     });
   </script>
 
-  <!-- Timeline fallback script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Check if TimelineJS fails to load or shows error
-      setTimeout(function() {
-        var timelineContainer = document.querySelector('#timelinejs-container iframe');
-        var errorElement = document.querySelector('#timelinejs-container .timeline-container');
-        
-        // If TimelineJS iframe has loading error or contains error text
-        if (!timelineContainer || 
-            timelineContainer.contentDocument && timelineContainer.contentDocument.body.textContent.includes('ERROR') ||
-            errorElement && errorElement.textContent.includes('ERROR')) {
-          // Hide TimelineJS container
-          document.getElementById('timelinejs-container').style.display = 'none';
-          // Show native timeline
-          document.getElementById('native-timeline-container').style.display = 'block';
-        }
-      }, 2000); // Check after 2 seconds to allow TimelineJS to load
-    });
-  </script>
-
   <!-- Custom scripts -->
   <script src="{{ '/assets/js/carousel.js' | relative_url }}"></script>
   
@@ -247,4 +100,5 @@
     {% endfor %}
   {% endif %}
 </body>
-</html> 
+</html>
+ 

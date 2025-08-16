@@ -1,4 +1,8 @@
 <div id="timeline-wrapper">
+  <div class="timeline-toggle no-print" aria-label="Toggle timeline view">
+    <button type="button" id="toggle-interactive" class="active">Interactive</button>
+    <button type="button" id="toggle-native">Text Timeline</button>
+  </div>
   <!-- Try TimelineJS first -->
   <div id="timelinejs-container">
     {% include timeline.html %}
@@ -8,4 +12,23 @@
   <div id="native-timeline-container" style="display: none;">
     {% include timeline-native.html %}
   </div>
-</div> 
+
+  <script>
+    (function() {
+      const btnInteractive = document.getElementById('toggle-interactive');
+      const btnNative = document.getElementById('toggle-native');
+      const interactive = document.getElementById('timelinejs-container');
+      const nativeTl = document.getElementById('native-timeline-container');
+      if (!btnInteractive || !btnNative || !interactive || !nativeTl) return;
+      function setMode(mode) {
+        const isInteractive = mode === 'interactive';
+        interactive.style.display = isInteractive ? 'block' : 'none';
+        nativeTl.style.display = isInteractive ? 'none' : 'block';
+        btnInteractive.classList.toggle('active', isInteractive);
+        btnNative.classList.toggle('active', !isInteractive);
+      }
+      btnInteractive.addEventListener('click', () => setMode('interactive'));
+      btnNative.addEventListener('click', () => setMode('native'));
+    })();
+  </script>
+</div>
