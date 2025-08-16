@@ -1,34 +1,17 @@
-<!-- Real Quote Carousel -->
-<div class="quote-carousel-container" style="text-align: center; max-width: 800px; margin: 0 auto;">
-  <div class="quote-slide">
-    <blockquote>"When machines and computers, profit motives and property rights are considered more important than people, the giant triplets of racism, materialism and militarism are incapable of being conquered."</blockquote>
-    <cite>— Dr. Martin Luther King Jr., 1967</cite>
-  </div>
-  <div class="quote-slide">
-    <blockquote>"The most common way people give up their power is by thinking they don’t have any."</blockquote>
-    <cite>— Alice Walker</cite>
-  </div>
-  <div class="quote-slide">
-    <blockquote>"The medium is the message."</blockquote>
-    <cite>— Marshall McLuhan</cite>
-  </div>
-  <div class="quote-slide">
-    <blockquote>"It is not only what we do, but also what we do not do, for which we are accountable."</blockquote>
-    <cite>— Molière</cite>
-  </div>
-  <div class="quote-slide">
-    <blockquote>"We are drowning in information, while starving for wisdom."</blockquote>
-    <cite>— E.O. Wilson</cite>
-  </div>
-  <div class="quote-slide">
-    <blockquote>"The great enemy of the truth is very often not the lie—deliberate, contrived and dishonest—but the myth—persistent, persuasive, and unrealistic."</blockquote>
-    <cite>— John F. Kennedy</cite>
-  </div>
-  <div class="quote-slide">
-    <blockquote>"He who controls the past controls the future. He who controls the present controls the past."</blockquote>
-    <cite>— George Orwell, *1984*</cite>
-  </div>
-  <div class="carousel-indicators">
-    <!-- JavaScript will populate these -->
-  </div>
+<!-- Data-driven Quote Carousel -->
+<div class="quote-carousel-container" style="text-align: center; max-width: 800px; margin: 0 auto;" role="region" aria-roledescription="carousel" aria-label="Quotes carousel" aria-live="polite" tabindex="0">
+  {% assign quotes = site.data.quotes %}
+  {% if quotes and quotes.size > 0 %}
+    {% for q in quotes %}
+      <div class="quote-slide" id="quote-slide-{{ forloop.index0 }}" role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} of {{ quotes.size }}" aria-hidden="{% if forloop.index0 != 0 %}true{% else %}false{% endif %}">
+        <blockquote>"{{ q.text }}"</blockquote>
+        {% if q.cite %}<cite>— {{ q.cite }}</cite>{% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="quote-slide" id="quote-slide-0" role="group" aria-roledescription="slide" aria-label="1 of 1" aria-hidden="false">
+      <blockquote>"Add quotes to _data/quotes.yml to populate the carousel."</blockquote>
+    </div>
+  {% endif %}
+  <div class="carousel-indicators" aria-label="Slide indicators"></div>
 </div>

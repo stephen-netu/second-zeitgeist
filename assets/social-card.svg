@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g transform="translate(600,315)" text-anchor="middle" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+    <text y="-10" font-size="64" fill="#ffffff" font-weight="700">Second Zeitgeist Manifesto</text>
+    <text y="48" font-size="28" fill="#cbd5e1">A vision for technology with integrity and purpose</text>
+  </g>
+  <circle cx="70" cy="70" r="36" fill="#ffffff" opacity="0.08"/>
+  <circle cx="1130" cy="560" r="48" fill="#ffffff" opacity="0.06"/>
+  <rect x="1060" y="40" width="60" height="60" rx="12" fill="#ffffff" opacity="0.07"/>
+</svg>

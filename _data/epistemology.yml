@@ -12,6 +12,7 @@
 # - facets: tags for filtering (e.g., theme, domain, actor, fallacy)
 
 - date: 2003-03
+  sort_key: 20030301
   title: Weapons of Mass Destruction Narrative
   claim: "Iraq possesses active WMD programs posing imminent threat."
   criteria_failed:
@@ -27,6 +28,7 @@
   facets: [politics, security, groupthink, overconfidence]
 
 - date: 2014
+  sort_key: 20140101
   title: Engagement-Optimized Feeds Displace Editorial Judgment
   claim: "Clicks, shares, and dwell time are reliable proxies for public value."
   criteria_failed:
@@ -40,6 +42,7 @@
   facets: [platforms, incentives, recommender_systems, misalignment]
 
 - date: 2020
+  sort_key: 20200101
   title: Preprint Supremacy During Crisis
   claim: "Speed of dissemination outweighs peer review during emergencies."
   criteria_failed:
@@ -54,6 +57,7 @@
   facets: [science, media, crisis, incentives]
 
 - date: 2023
+  sort_key: 20230101
   title: Model Accuracy Over Calibration
   claim: "Top-1 accuracy is sufficient to trust system outputs."
   criteria_failed:

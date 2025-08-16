@@ -1,7 +1,7 @@
 <div id="timeline-wrapper">
   <div class="timeline-toggle no-print" aria-label="Toggle timeline view">
-    <button type="button" id="toggle-interactive" class="active">Interactive</button>
-    <button type="button" id="toggle-native">Text Timeline</button>
+    <button type="button" id="toggle-interactive" class="active" aria-pressed="true" aria-controls="timelinejs-container">Interactive</button>
+    <button type="button" id="toggle-native" aria-pressed="false" aria-controls="native-timeline-container">Text Timeline</button>
   </div>
   <!-- Try TimelineJS first -->
   <div id="timelinejs-container">
@@ -20,15 +20,85 @@
       const interactive = document.getElementById('timelinejs-container');
       const nativeTl = document.getElementById('native-timeline-container');
       if (!btnInteractive || !btnNative || !interactive || !nativeTl) return;
+
+      // Lazy-load setup for the KnightLab iframe
+      let loaded = false;
+      let io = null;
+      function getPlaceholder(){
+        return interactive.querySelector('#timeline-iframe-placeholder');
+      }
+      function mountIframe(){
+        if (loaded) return;
+        const ph = getPlaceholder();
+        if (!ph) return;
+        const src = ph.getAttribute('data-src');
+        if (!src) return;
+        const iframe = document.createElement('iframe');
+        iframe.src = src;
+        iframe.width = '100%';
+        iframe.height = '650';
+        iframe.frameBorder = '0';
+        iframe.loading = 'lazy';
+        ph.replaceWith(iframe);
+        loaded = true;
+        if (io) { io.disconnect(); io = null; }
+      }
+      function setupLazyLoad(){
+        if (loaded) return;
+        const ph = getPlaceholder();
+        if (!ph) return;
+        const btn = ph.querySelector('.load-timeline-btn');
+        if (btn) btn.addEventListener('click', mountIframe, { once: true });
+        if ('IntersectionObserver' in window) {
+          io = new IntersectionObserver((entries)=>{
+            for (const entry of entries) {
+              if (entry.isIntersecting) { mountIframe(); break; }
+            }
+          }, { root: null, rootMargin: '100px', threshold: 0.1 });
+          io.observe(ph);
+        }
+      }
+
       function setMode(mode) {
         const isInteractive = mode === 'interactive';
         interactive.style.display = isInteractive ? 'block' : 'none';
         nativeTl.style.display = isInteractive ? 'none' : 'block';
         btnInteractive.classList.toggle('active', isInteractive);
         btnNative.classList.toggle('active', !isInteractive);
+        btnInteractive.setAttribute('aria-pressed', isInteractive ? 'true' : 'false');
+        btnNative.setAttribute('aria-pressed', isInteractive ? 'false' : 'true');
+        if (isInteractive) {
+          setupLazyLoad();
+        }
       }
-      btnInteractive.addEventListener('click', () => setMode('interactive'));
-      btnNative.addEventListener('click', () => setMode('native'));
+      function updateUrlParam(mode){
+        try {
+          const params = new URLSearchParams(window.location.search);
+          params.set('view', mode);
+          const newUrl = window.location.pathname + '?' + params.toString();
+          window.history.replaceState(null, '', newUrl);
+        } catch (e) {}
+      }
+      function persistMode(mode){
+        try { localStorage.setItem('timelineView', mode); } catch (e) {}
+      }
+      btnInteractive.addEventListener('click', () => { setMode('interactive'); persistMode('interactive'); updateUrlParam('interactive'); });
+      btnNative.addEventListener('click', () => { setMode('native'); persistMode('native'); updateUrlParam('native'); });
+      // Determine initial mode: URL param > localStorage > prefers-reduced-motion > interactive
+      (function initMode(){
+        let initial = 'interactive';
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const v = params.get('view');
+          if (v === 'interactive' || v === 'native') { initial = v; }
+          else {
+            const stored = localStorage.getItem('timelineView');
+            if (stored === 'interactive' || stored === 'native') initial = stored;
+            else if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) initial = 'native';
+          }
+        } catch (e) {}
+        setMode(initial);
+      })();
     })();
   </script>
 </div>

@@ -1,16 +1,23 @@
 <!-- Native Jekyll Timeline -->
 <section id="timeline" class="timeline-section">
   <h2>Our Journey</h2>
-  <div class="timeline-filters no-print" aria-label="Filter timeline by facet" style="margin-bottom: 1rem;">
-    <strong style="margin-right: 0.5rem;">Filter:</strong>
-    <span class="facets"></span>
-    <button type="button" class="clear-filters" style="margin-left: 0.5rem;">Clear</button>
+  <div class="timeline-filters no-print" aria-label="Filter timeline by facet and search" style="margin-bottom: 1rem;">
+    <div class="filters-row">
+      <strong>Filter:</strong>
+      <span class="facets"></span>
+      <button type="button" class="clear-filters">Clear</button>
+    </div>
+    <div class="filters-row">
+      <input type="search" id="timeline-search" placeholder="Search events..." aria-label="Search timeline">
+      <input type="text" id="date-start" placeholder="Start (YYYY or YYYY-MM)" inputmode="numeric" aria-label="Start date">
+      <input type="text" id="date-end" placeholder="End (YYYY or YYYY-MM)" inputmode="numeric" aria-label="End date">
+    </div>
   </div>
   <div class="timeline-container native-timeline">
     <div class="timeline-line"></div>
-    {% assign events = site.data.epistemology | default: site.data.timeline | sort: 'date' %}
+    {% assign events = site.data.epistemology | default: site.data.timeline %}
     {% for event in events %}
-      <div class="timeline-event" data-facets="{% if event.facets %}{{ event.facets | join: ',' }}{% endif %}">
+      <div class="timeline-event" tabindex="0" data-facets="{% if event.facets %}{{ event.facets | join: ',' }}{% endif %}">
         <div class="timeline-dot"></div>
         <div class="timeline-content">
           <h3 class="event-title">{{ event.title }}</h3>
@@ -56,52 +63,161 @@
       const container = document.currentScript && document.currentScript.parentElement;
       if (!container) return;
       const events = container.querySelectorAll('.timeline-event');
+      const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const facetsSpan = container.querySelector('.timeline-filters .facets');
       const clearBtn = container.querySelector('.timeline-filters .clear-filters');
+      const searchInput = container.querySelector('#timeline-search');
+      const startInput = container.querySelector('#date-start');
+      const endInput = container.querySelector('#date-end');
       if (!facetsSpan || !clearBtn) return;
-      // Collect unique facets
+
+      // Helpers
+      function debounce(fn, wait){ let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args), wait); }; }
+      function pad2(n){ return (n<10?'0':'')+n; }
+      function parseDateToInt(str, isEnd){
+        if (!str) return null;
+        const s = String(str).trim();
+        const mY = s.match(/^\d{4}$/);
+        const mYM = s.match(/^(\d{4})-(\d{2})$/);
+        const mYMD = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+        if (mY) return parseInt(mY[0] + (isEnd ? '1231' : '0101'));
+        if (mYM) return parseInt(mYM[1] + mYM[2] + (isEnd ? '31' : '01'));
+        if (mYMD) return parseInt(mYMD[1] + mYMD[2] + mYMD[3]);
+        return null;
+      }
+      function eventDateRangeInt(ev){
+        const startText = ev.querySelector('.event-date')?.textContent || '';
+        const endText = ev.querySelector('.event-end-date')?.textContent || startText;
+        return [parseDateToInt(startText,false), parseDateToInt(endText,true)];
+      }
+      function eventText(ev){
+        const parts = [
+          '.event-title','.event-claim','.event-description','.event-evidence','.event-sources','.event-impact',
+        ].map(sel => ev.querySelector(sel)?.textContent || '');
+        // include criteria badges
+        ev.querySelectorAll('.criteria-badge').forEach(b => parts.push(b.textContent||''));
+        return parts.join(' ').toLowerCase();
+      }
+      function getVisibleEvents(){
+        return Array.from(events).filter(ev => ev.style.display !== 'none');
+      }
+      function updateURL(q, start, end, selectedFacets){
+        const params = new URLSearchParams(window.location.search);
+        if (q) params.set('q', q); else params.delete('q');
+        if (start) params.set('start', start); else params.delete('start');
+        if (end) params.set('end', end); else params.delete('end');
+        if (selectedFacets.size){
+          const arr = Array.from(selectedFacets).sort();
+          params.set('facets', arr.join(','));
+        } else {
+          params.delete('facets');
+        }
+        const newUrl = window.location.pathname + (params.toString() ? ('?' + params.toString()) : '');
+        window.history.replaceState(null, '', newUrl);
+      }
+
+      // Collect unique facets across events
       const facetSet = new Set();
       events.forEach(ev => {
         const facets = (ev.getAttribute('data-facets')||'').split(',').map(s=>s.trim()).filter(Boolean);
         facets.forEach(f=>facetSet.add(f));
       });
-      // Build checkboxes
+
+      // Read URL params for initial state
+      const initParams = new URLSearchParams(window.location.search);
+      const initQ = initParams.get('q') || '';
+      const initStart = initParams.get('start') || '';
+      const initEnd = initParams.get('end') || '';
+      const initFacets = new Set((initParams.get('facets')||'').split(',').map(s=>s.trim()).filter(Boolean));
+      if (searchInput) searchInput.value = initQ;
+      if (startInput) startInput.value = initStart;
+      if (endInput) endInput.value = initEnd;
+
+      // Build checkboxes with initial checks from URL
       const selected = new Set();
       facetSet.forEach(f => {
         const id = 'facet-'+f.replace(/[^a-z0-9_-]/gi,'').toLowerCase();
         const label = document.createElement('label');
-        label.style.marginRight = '8px';
+        label.className = 'facet-label';
         const cb = document.createElement('input');
         cb.type = 'checkbox';
         cb.value = f;
         cb.id = id;
+        if (initFacets.has(f)) { cb.checked = true; selected.add(f); }
         cb.addEventListener('change', () => {
           if (cb.checked) selected.add(f); else selected.delete(f);
-          applyFilter();
+          updateStateAndFilter();
         });
         label.appendChild(cb);
         const text = document.createTextNode(' '+f);
         label.appendChild(text);
         facetsSpan.appendChild(label);
       });
+
       clearBtn.addEventListener('click', () => {
         selected.clear();
         facetsSpan.querySelectorAll('input[type="checkbox"]').forEach(cb=>cb.checked=false);
-        applyFilter();
+        if (searchInput) searchInput.value = '';
+        if (startInput) startInput.value = '';
+        if (endInput) endInput.value = '';
+        updateStateAndFilter();
       });
-      function applyFilter(){
-        if (selected.size === 0){
-          events.forEach(ev => ev.style.display = '');
-          return;
-        }
+
+      const updateStateAndFilter = debounce(() => {
+        const q = (searchInput?.value || '').trim();
+        const s = (startInput?.value || '').trim();
+        const e = (endInput?.value || '').trim();
+        updateURL(q, s, e, selected);
+        applyFilter(q, s, e);
+      }, 150);
+
+      if (searchInput) searchInput.addEventListener('input', updateStateAndFilter);
+      if (startInput) startInput.addEventListener('input', updateStateAndFilter);
+      if (endInput) endInput.addEventListener('input', updateStateAndFilter);
+
+      function applyFilter(q, startStr, endStr){
+        const ql = (q||'').toLowerCase();
+        const startInt = parseDateToInt(startStr, false);
+        const endInt = parseDateToInt(endStr, true);
         events.forEach(ev => {
+          // Facets
           const facets = (ev.getAttribute('data-facets')||'').split(',').map(s=>s.trim()).filter(Boolean);
-          const hasAll = [...selected].every(f => facets.includes(f));
-          ev.style.display = hasAll ? '' : 'none';
+          const hasAllFacets = selected.size ? Array.from(selected).every(f => facets.includes(f)) : true;
+          if (!hasAllFacets) { ev.style.display = 'none'; return; }
+          // Text search
+          const textOk = ql ? eventText(ev).includes(ql) : true;
+          if (!textOk) { ev.style.display = 'none'; return; }
+          // Date overlap
+          const [evStart, evEnd] = eventDateRangeInt(ev);
+          const startOk = (startInt==null) ? true : (evEnd==null || evEnd >= startInt);
+          const endOk = (endInt==null) ? true : (evStart==null || evStart <= endInt);
+          ev.style.display = (startOk && endOk) ? '' : 'none';
         });
       }
+
+      // Initial filter application from URL
+      applyFilter(initQ, initStart, initEnd);
+
+      // Keyboard navigation between visible events (j/k or Arrow keys)
+      container.addEventListener('keydown', (e) => {
+        const isNext = (e.key === 'j' || e.key === 'ArrowDown');
+        const isPrev = (e.key === 'k' || e.key === 'ArrowUp');
+        if (!isNext && !isPrev) return;
+        const visible = getVisibleEvents();
+        if (!visible.length) return;
+        const idx = visible.indexOf(document.activeElement);
+        let nextIdx = idx;
+        if (isNext) nextIdx = Math.min(visible.length - 1, idx + 1);
+        if (isPrev) nextIdx = Math.max(0, idx - 1);
+        if (nextIdx < 0) nextIdx = 0;
+        const target = visible[nextIdx] || visible[0];
+        target.focus({preventScroll:false});
+        target.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'center'});
+        e.preventDefault();
+      });
     })();
   </script>
 </section>
+
  
  

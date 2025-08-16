@@ -26,17 +26,15 @@ This site is built with Jekyll. To run it locally:
 
 ### Adding New Quotes
 
-Edit the `_includes/quote-carousel.html` file to add or modify quotes in the carousel.
+Edit `_data/quotes.yml` to add or modify quotes in the carousel. The include `/_includes/quote-carousel.html` renders from this data.
 
 ### Modifying Styles
 
-- Light mode styles: `assets/css/style.scss`
-- Dark mode styles: `assets/css/dark-mode.css`
-- Print styles: `assets/css/print-styles.css`
+- Single source of truth: `assets/css/style.scss` (compiled by Jekyll to `style.css`)
 
 ### Timeline
 
-Modify the timeline data in the appropriate data file.
+Interactive timeline uses KnightLab (Google Sheet). The native, filterable timeline renders from `_data/epistemology.yml` (falls back to `_data/timeline.yml`).
 
 ## License
 

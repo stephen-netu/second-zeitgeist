@@ -4,6 +4,15 @@ description: A collective vision and manifesto for technology that serves humani
 url: "https://stephen-netu.github.io"
 baseurl: "/second-zeitgeist"
 
+# Site metadata for SEO/social
+lang: en
+author:
+  name: Second Zeitgeist
+logo: /assets/favicon.svg
+image: /assets/social-card.svg
+twitter_username: secondzeitgeist
+github_username: stephen-netu
+
 # Build settings
 markdown: kramdown
 plugins:
