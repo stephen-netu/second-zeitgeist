@@ -1,0 +1,67 @@
+# Epistemology Timeline Data
+# Fields:
+# - date: YYYY or YYYY-MM or YYYY-MM-DD
+# - end_date: optional end of period
+# - title: concise name for the event/shift
+# - claim: succinct statement encapsulating the belief or framing
+# - criteria_failed: list of epistemic criteria not met (e.g., falsifiability, replication, calibration, base-rate neglect)
+# - description: short narrative of what happened
+# - evidence: brief note about the evidence quality/shape
+# - sources: list of URLs or objects { title, url }
+# - impact: short assessment of consequences
+# - facets: tags for filtering (e.g., theme, domain, actor, fallacy)
+
+- date: 2003-03
+  title: Weapons of Mass Destruction Narrative
+  claim: "Iraq possesses active WMD programs posing imminent threat."
+  criteria_failed:
+    - falsifiability
+    - independent_corroboration
+    - calibration
+  description: Intelligence assessments were presented with unjustified certainty; dissenting analyses were sidelined.
+  evidence: Fragmentary intelligence and defectors’ claims elevated above contradictory signals.
+  sources:
+    - title: Senate Report on Prewar Intelligence on Iraq (2004)
+      url: https://www.govinfo.gov/content/pkg/CRPT-108srpt301/html/CRPT-108srpt301.htm
+  impact: Legitimized a war with long-term regional destabilization and loss of trust.
+  facets: [politics, security, groupthink, overconfidence]
+
+- date: 2014
+  title: Engagement-Optimized Feeds Displace Editorial Judgment
+  claim: "Clicks, shares, and dwell time are reliable proxies for public value."
+  criteria_failed:
+    - metric_alignment
+    - externalities_accounting
+  description: Social platforms shifted distribution toward behavioral optimization, amplifying outrage and novelty.
+  evidence: Internal docs and later disclosures reveal known misalignment and harms.
+  sources:
+    - https://about.fb.com/news/2021/10/research-on-teen-well-being/
+  impact: Attention monopolies shape salience; epistemic commons polluted by incentives.
+  facets: [platforms, incentives, recommender_systems, misalignment]
+
+- date: 2020
+  title: Preprint Supremacy During Crisis
+  claim: "Speed of dissemination outweighs peer review during emergencies."
+  criteria_failed:
+    - replication
+    - error_correction_latency
+    - uncertainty_quantification
+  description: Preprints and press amplified provisional results, outpacing correction mechanisms.
+  evidence: High retraction/errata rates; public policy whipsawed by preliminary findings.
+  sources:
+    - https://retractionwatch.com/
+  impact: Public trust strained; polarization around transient, unvetted claims.
+  facets: [science, media, crisis, incentives]
+
+- date: 2023
+  title: Model Accuracy Over Calibration
+  claim: "Top-1 accuracy is sufficient to trust system outputs."
+  criteria_failed:
+    - calibration
+    - transparency
+  description: Deployment decisions privileged benchmark scores over reliability and uncertainty reporting.
+  evidence: Benchmarked gains masked poorly calibrated outputs in real-world settings.
+  sources:
+    - https://arxiv.org/abs/1904.01685
+  impact: Downstream decisions overconfident; compounding error in human-AI teams.
+  facets: [ai, metrics, deployment, reliability]
