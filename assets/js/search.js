@@ -105,8 +105,9 @@
           const title = highlight(r.title || (r.type==='quote'?'Quote':'Untitled'));
           const snippet = highlight((r.snippet||'').toString().slice(0,160));
           const optId = `result-option-${i}`;
-          return `<li id="${optId}" class="result-item" role="option" data-index="${i}">
-            <a href="${r.url}" class="result-link">
+          // Anchor inside option should not be focusable to avoid nested interactive controls within role=option
+          return `<li id="${optId}" class="result-item" role="option" aria-selected="false" data-index="${i}" data-url="${r.url}">
+            <a href="${r.url}" class="result-link" tabindex="-1" role="presentation">
               <span class="result-icon" aria-hidden="true">${icon}</span>
               <span class="result-main">
                 <span class="result-title">${title}</span>
@@ -181,11 +182,12 @@
     }
 
     function updateActive(){
-      $all('.result-item', panel).forEach(el=>el.classList.remove('active'));
+      $all('.result-item', panel).forEach(el=>{ el.classList.remove('active'); el.setAttribute('aria-selected','false'); });
       if (activeIndex >=0) {
         const el = $(`.result-item[data-index="${activeIndex}"]`, panel);
         if (el) {
           el.classList.add('active');
+          el.setAttribute('aria-selected','true');
           el.scrollIntoView({block:'nearest'});
           const id = el.getAttribute('id');
           if (id) input.setAttribute('aria-activedescendant', id);
@@ -243,8 +245,9 @@
 
     function openActive(){
       if (activeIndex<0) return;
-      const link = $(`.result-item[data-index="${activeIndex}"] .result-link`, panel);
-      if (link) link.click();
+      const el = $(`.result-item[data-index="${activeIndex}"]`, panel);
+      const url = el && el.getAttribute('data-url');
+      if (url) { window.location.href = url; }
     }
 
     const debounced = debounce((q)=> run(q), 150);
@@ -262,6 +265,14 @@
     });
 
     document.addEventListener('click', (e)=>{
+      // Activate option on click
+      const opt = e.target.closest('.result-item');
+      if (opt && panel.contains(opt)) {
+        e.preventDefault();
+        const idx = parseInt(opt.getAttribute('data-index'), 10);
+        if (!Number.isNaN(idx)) { activeIndex = idx; updateActive(); openActive(); return; }
+      }
+      // Dismiss when clicking outside
       if (!panel.contains(e.target) && e.target!==input) {
         panel.hidden = true;
         input.setAttribute('aria-expanded', 'false');
