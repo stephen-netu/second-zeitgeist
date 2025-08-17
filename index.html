@@ -1,0 +1,19 @@
+---
+layout: null
+permalink: /
+sitemap: false
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex,follow" />
+  <meta http-equiv="refresh" content="0; url={{ site.baseurl }}/" />
+  <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/" />
+  <title>Redirecting…</title>
+</head>
+<body>
+  <p>Redirecting to <a href="{{ site.baseurl }}/">{{ site.baseurl }}/</a> …</p>
+  <script>location.replace('{{ site.baseurl }}/');</script>
+</body>
+</html>

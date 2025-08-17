@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stephen-netu.github.io/second-zeitgeist/sitemap.xml

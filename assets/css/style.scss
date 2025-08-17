@@ -32,6 +32,28 @@ body.dark-mode .timeline-filters .facet-chip:focus-visible { outline: 2px solid 
   overflow: hidden; clip: rect(0,0,1px,1px); white-space: nowrap; border: 0;
 }
 
+/* Skip link: hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 8px;
+  background: #000;
+  color: #fff !important;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  z-index: 1101;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 8px;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+body.dark-mode .skip-link {
+  background: #222;
+}
+
 /* CSS Variables for consistency */
 :root {
   --light-bg: #fff;
@@ -770,6 +792,61 @@ body.pdf-export-mode .no-print {
   right: 20px;
   z-index: 1001;
 }
+
+/* Keyboard help button */
+.kbd-help {
+  position: fixed;
+  top: 20px;
+  right: 70px;
+  z-index: 1001;
+  border: 1px solid var(--light-border);
+  background: var(--light-surface);
+  color: var(--light-text-primary);
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+body.dark-mode .kbd-help {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
+  color: var(--dark-text-primary);
+}
+
+/* Help modal */
+.help-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: grid;
+  place-items: center;
+  z-index: 1100;
+}
+.help-content {
+  background: var(--light-bg);
+  color: var(--light-text-primary);
+  border: 1px solid var(--light-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  width: min(520px, 92vw);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+body.dark-mode .help-content {
+  background: var(--dark-surface);
+  color: var(--dark-text-primary);
+  border-color: var(--dark-border);
+}
+.help-content h2 { margin-top: 0; }
+.help-content ul { padding-left: 1.2em; }
+.help-content kbd {
+  background: #eee;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+body.dark-mode .help-content kbd { background: #333; border-color: #444; }
 
 /* Responsive layout fixes */
 @media screen and (max-width: 768px) {

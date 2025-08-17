@@ -1,12 +1,4 @@
-    // Create a polite live region for announcing results to screen readers
-    let liveRegion = document.createElement('div');
-    liveRegion.setAttribute('aria-live', 'polite');
-    liveRegion.setAttribute('role', 'status');
-    liveRegion.className = 'sr-only';
-    const searchContainer = input.closest('.site-search') || document.body;
-    searchContainer.appendChild(liveRegion);
-
-(function(){
+    (function(){
   function $(sel, root=document){ return root.querySelector(sel); }
   function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
   function escapeHtml(str){ return str.replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s])); }
@@ -107,7 +99,7 @@
       input.setAttribute('aria-expanded', 'true');
       const html = [
         renderFilters(),
-        list.length ? '<ul id="site-search-listbox" class="results-list" role="listbox" aria-label="Search results">' : '<div class="results-empty" role="status">No results</div>',
+        list.length ? '<ul id="site-search-listbox" class="results-list" role="listbox" aria-labelledby="site-search-input">' : '<div class="results-empty" role="status">No results</div>',
         ...list.map((r,i)=>{
           const icon = r.type==='event'?'📅':(r.type==='quote'?'❝':'📄');
           const title = highlight(r.title || (r.type==='quote'?'Quote':'Untitled'));
